@@ -3,28 +3,28 @@ import { FadeIn } from '../components/FadeIn';
 const services = [
   {
     number: '01',
-    title: '3D Modeling',
-    description: 'Creation of detailed objects, characters, or environments tailored to specific client needs, ideal for games, products, and visualizations.',
+    title: 'Système Magnétique',
+    description: 'Un aimant ultra puissant qui maintient votre téléphone fermement en place. Parfait pour vos selfies, vos vidéos et vos aventures en plein air.',
   },
   {
     number: '02',
-    title: 'Rendering',
-    description: 'High-quality, photorealistic renders that showcase designs with custom lighting, textures, and materials to bring concepts to life.',
+    title: 'Isolation Thermique',
+    description: 'Garde vos boissons froides ou chaudes pendant des heures. Parois doubles isolantes pour une performance thermique optimale toute la journée.',
   },
   {
     number: '03',
-    title: 'Motion Design',
-    description: 'Dynamic animations and motion graphics that add energy and storytelling to brands, products, and digital experiences.',
+    title: 'Écologique & Durable',
+    description: 'Fabriquée avec des matériaux respectueux de l\'environnement et résistants à l\'eau. Une gourde qui dure et qui prend soin de la planète.',
   },
   {
     number: '04',
-    title: 'Branding',
-    description: 'Crafting cohesive visual identities -- from logos to full brand systems -- that communicate a clear and memorable presence.',
+    title: 'Robuste & Fiable',
+    description: 'Conçue pour supporter les chocs, les chutes et la vie active. Votre compagnon de confiance pour le sport, le travail et vos aventures.',
   },
   {
     number: '05',
-    title: 'Web Design',
-    description: 'Designing clean, modern, and conversion-focused websites with attention to layout, typography, and user experience.',
+    title: 'Design Élégant',
+    description: 'Un design minimaliste et intemporel qui s\'adapte à tous les styles de vie. Offrez-vous un accessoire utile et au style impeccable.',
   },
 ];
 
@@ -34,7 +34,7 @@ export const ServicesSection = () => {
       {/* Heading */}
       <FadeIn delay={0} y={40}>
         <h2 className="text-[#0C0C0C] font-black uppercase text-center mb-16 sm:mb-20 md:mb-28" style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}>
-          Services
+          Caractéristiques
         </h2>
       </FadeIn>
 

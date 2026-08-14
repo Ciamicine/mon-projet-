@@ -13,7 +13,7 @@ export const ContactButton = () => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >
-      Contact Me
+      Acheter Maintenant
     </motion.button>
   );
 };

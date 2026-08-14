@@ -7,7 +7,7 @@ export const LiveProjectButton = () => {
       whileHover={{ backgroundColor: 'rgba(215, 226, 234, 0.1)' }}
       whileTap={{ scale: 0.95 }}
     >
-      Live Project
+      Découvrir
     </motion.button>
   );
 };
