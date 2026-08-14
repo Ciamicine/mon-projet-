@@ -780,35 +780,105 @@
       ringGlow.rotation.x = Math.PI / 2;
       bottle.add(ringGlow);
 
-      // Phone - hanging from magnetic ring with better details
-      const phoneGeom = new THREE.BoxGeometry(0.32, 0.6, 0.016);
-      const phoneMat = new THREE.MeshStandardMaterial({
+      // iPhone 17 Pro Max - hanging from magnetic ring
+      const phoneGroup = new THREE.Group();
+
+      // Phone body - titanium frame
+      const phoneBodyGeom = new THREE.BoxGeometry(0.3, 0.58, 0.015);
+      const phoneBodyMat = new THREE.MeshStandardMaterial({
+        color: 0x1a1a1a,
+        metalness: 0.8,
+        roughness: 0.2,
+        emissive: 0x0f0f0f,
+        emissiveIntensity: 0.1
+      });
+      const phoneBody = new THREE.Mesh(phoneBodyGeom, phoneBodyMat);
+      phoneBody.castShadow = true;
+      phoneBody.receiveShadow = true;
+      phoneGroup.add(phoneBody);
+
+      // Phone screen - OLED display
+      const screenGeom = new THREE.BoxGeometry(0.285, 0.555, 0.003);
+      const screenMat = new THREE.MeshStandardMaterial({
         color: 0x0a0a0a,
-        metalness: 0.85,
-        roughness: 0.15,
+        metalness: 0.1,
+        roughness: 0.05,
+        emissive: 0x1a2a3a,
+        emissiveIntensity: 0.25
+      });
+      const screen = new THREE.Mesh(screenGeom, screenMat);
+      screen.position.z = 0.008;
+      phoneGroup.add(screen);
+
+      // Camera lens - top
+      const cameraLensGeom = new THREE.CylinderGeometry(0.03, 0.03, 0.008, 32);
+      const cameraLensMat = new THREE.MeshStandardMaterial({
+        color: 0x0a0a0a,
+        metalness: 0.9,
+        roughness: 0.05,
         emissive: 0x1a1a1a,
         emissiveIntensity: 0.2
       });
-      const phone = new THREE.Mesh(phoneGeom, phoneMat);
-      phone.position.set(0.38, 0.65, 0);
-      phone.rotation.z = 0.25;
-      phone.castShadow = true;
-      phone.receiveShadow = true;
-      bottle.add(phone);
+      const cameraLens = new THREE.Mesh(cameraLensGeom, cameraLensMat);
+      cameraLens.position.set(-0.08, 0.2, 0.01);
+      cameraLens.rotation.x = Math.PI / 2;
+      phoneGroup.add(cameraLens);
 
-      // Phone screen with subtle glow
-      const screenGeom = new THREE.BoxGeometry(0.3, 0.55, 0.002);
-      const screenMat = new THREE.MeshStandardMaterial({
-        color: 0x1a1a1a,
-        metalness: 0.2,
-        roughness: 0.1,
-        emissive: 0x2a4a6a,
-        emissiveIntensity: 0.15
+      // Camera housing ring
+      const cameraRingGeom = new THREE.CylinderGeometry(0.035, 0.035, 0.012, 32);
+      const cameraRingMat = new THREE.MeshStandardMaterial({
+        color: 0x222222,
+        metalness: 0.75,
+        roughness: 0.25
       });
-      const screen = new THREE.Mesh(screenGeom, screenMat);
-      screen.position.set(0.38, 0.65, 0.009);
-      screen.rotation.z = 0.25;
-      bottle.add(screen);
+      const cameraRing = new THREE.Mesh(cameraRingGeom, cameraRingMat);
+      cameraRing.position.set(-0.08, 0.2, 0.01);
+      cameraRing.rotation.x = Math.PI / 2;
+      phoneGroup.add(cameraRing);
+
+      // Secondary camera lens
+      const cameraLens2Geom = new THREE.CylinderGeometry(0.025, 0.025, 0.008, 32);
+      const cameraLens2Mat = new THREE.MeshStandardMaterial({
+        color: 0x0a0a0a,
+        metalness: 0.9,
+        roughness: 0.05
+      });
+      const cameraLens2 = new THREE.Mesh(cameraLens2Geom, cameraLens2Mat);
+      cameraLens2.position.set(-0.025, 0.2, 0.01);
+      cameraLens2.rotation.x = Math.PI / 2;
+      phoneGroup.add(cameraLens2);
+
+      // Flash LED
+      const flashGeom = new THREE.CylinderGeometry(0.012, 0.012, 0.005, 16);
+      const flashMat = new THREE.MeshStandardMaterial({
+        color: 0x1a1a1a,
+        metalness: 0.6,
+        roughness: 0.3,
+        emissive: 0x3a3a2a,
+        emissiveIntensity: 0.1
+      });
+      const flash = new THREE.Mesh(flashGeom, flashMat);
+      flash.position.set(0.025, 0.25, 0.01);
+      flash.rotation.x = Math.PI / 2;
+      phoneGroup.add(flash);
+
+      // Notch area - Dynamic Island
+      const notchGeom = new THREE.BoxGeometry(0.05, 0.025, 0.006);
+      const notchMat = new THREE.MeshStandardMaterial({
+        color: 0x000000,
+        metalness: 0.2,
+        roughness: 0.3,
+        emissive: 0x0a0a0a,
+        emissiveIntensity: 0.3
+      });
+      const notch = new THREE.Mesh(notchGeom, notchMat);
+      notch.position.set(0, 0.255, 0.008);
+      phoneGroup.add(notch);
+
+      // Position phone hanging from ring
+      phoneGroup.position.set(0.38, 0.65, 0);
+      phoneGroup.rotation.z = 0.25;
+      bottle.add(phoneGroup);
 
       // Ground shadow
       const shadowGeom = new THREE.CircleGeometry(1.3, 64);
