@@ -34,8 +34,8 @@ export default function Newsletter() {
           className="text-center space-y-6"
         >
           <motion.div
-            animate={{ rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity }}
+            animate={{ rotate: [0, 4, -4, 0], y: [0, -3, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             className="inline-block"
           >
             <Mail className="w-16 h-16 text-white mx-auto mb-4" />
@@ -62,8 +62,9 @@ export default function Newsletter() {
               className="flex-1 px-6 py-4 rounded-full bg-white/90 backdrop-blur text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-sky-300 transition-all"
             />
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               type="submit"
               disabled={submitted}
               className="px-8 py-4 rounded-full bg-sky-400 hover:bg-sky-300 text-white font-semibold transition-colors whitespace-nowrap disabled:opacity-75"

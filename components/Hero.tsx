@@ -8,8 +8,8 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 }
@@ -19,7 +19,7 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: 'easeOut' },
+    transition: { duration: 0.6, ease: 'easeOut' },
   },
 }
 
@@ -64,15 +64,17 @@ export default function Hero() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.08, y: -6 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   className="px-8 py-4 rounded-full bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold shadow-lg hover:shadow-xl transition-shadow"
                 >
                   Shop Now
                 </motion.button>
                 <motion.button
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.08, y: -6 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   className="px-8 py-4 rounded-full border-2 border-sky-500 text-sky-600 font-semibold hover:bg-sky-50 transition-colors"
                 >
                   Learn More
@@ -124,8 +126,8 @@ export default function Hero() {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-sky-400 to-pink-500 rounded-3xl transform -rotate-6 opacity-20" />
             <motion.div
-              animate={{ y: [0, -20, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative z-10 rounded-3xl glass-effect p-8 h-96 flex items-center justify-center overflow-hidden"
             >
               {/* Placeholder for product image */}

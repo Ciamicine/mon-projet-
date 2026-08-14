@@ -66,7 +66,7 @@ export default function FAQ() {
               key={faq.id}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ duration: 0.35, delay: index * 0.04, ease: 'easeOut' }}
               viewport={{ once: true }}
               className="group"
             >
