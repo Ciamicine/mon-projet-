@@ -255,17 +255,6 @@
       overflow: hidden;
     }
 
-    .features-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.08;
-      pointer-events: none;
-    }
-
     .features::before {
       content: '';
       position: absolute;
@@ -273,7 +262,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+      background: url('data:video/*') center/cover;
+      opacity: 0.08;
       pointer-events: none;
     }
 
@@ -284,7 +274,7 @@
       max-width: 1400px;
       margin: 0 auto;
       position: relative;
-      z-index: 3;
+      z-index: 2;
     }
 
     .feature {
@@ -393,28 +383,6 @@
       overflow: hidden;
     }
 
-    .testimonials-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.06;
-      pointer-events: none;
-    }
-
-    .testimonials::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.95) 100%);
-      pointer-events: none;
-    }
-
     .testimonials h2 {
       font-size: 42px;
       font-weight: 700;
@@ -422,8 +390,6 @@
       margin-bottom: 60px;
       color: #050505;
       animation: fadeInUp 0.8s ease;
-      position: relative;
-      z-index: 2;
     }
 
     .testimonials-grid {
@@ -432,8 +398,6 @@
       gap: 30px;
       max-width: 1400px;
       margin: 0 auto;
-      position: relative;
-      z-index: 2;
     }
 
     .testimonial {
@@ -675,9 +639,6 @@
 
   <!-- FEATURES SECTION -->
   <section class="features" id="produit">
-    <video class="features-video" autoplay muted loop playsinline>
-      <source src="https://videos.pexels.com/video-files/3116444/3116444-hd_1920_1080_25fps.mp4" type="video/mp4">
-    </video>
     <div class="features-grid">
       <div class="feature">
         <div class="feature-icon">⚡</div>
@@ -718,9 +679,6 @@
 
   <!-- TESTIMONIALS -->
   <section class="testimonials" id="avis">
-    <video class="testimonials-video" autoplay muted loop playsinline>
-      <source src="https://videos.pexels.com/video-files/2518375/2518375-hd_1920_1080_24fps.mp4" type="video/mp4">
-    </video>
     <h2>Témoignages de Nos Clients</h2>
     <div class="testimonials-grid">
       <div class="testimonial">
