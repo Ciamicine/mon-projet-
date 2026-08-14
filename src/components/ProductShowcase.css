@@ -1,0 +1,155 @@
+.product-showcase {
+  background: #FFFFFF;
+  padding: 120px 0;
+  position: relative;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 80px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.showcase-header h2 {
+  color: #050505;
+  margin-bottom: 20px;
+  white-space: pre-line;
+}
+
+.showcase-description {
+  font-size: 18px;
+  color: rgba(5, 5, 5, 0.6);
+  line-height: 1.8;
+}
+
+.showcase-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.showcase-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.showcase-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+}
+
+.showcase-features {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.showcase-card {
+  padding: 32px;
+  border: 1px solid #EDEDED;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C8A968;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.showcase-card:hover {
+  border-color: #C8A968;
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.showcase-card:hover::before {
+  transform: scaleX(1);
+}
+
+.card-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #C8A968;
+  margin-bottom: 16px;
+}
+
+.showcase-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #050505;
+  margin-bottom: 12px;
+}
+
+.showcase-card p {
+  font-size: 14px;
+  color: rgba(5, 5, 5, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .product-showcase {
+    padding: 80px 0;
+  }
+
+  .showcase-content {
+    gap: 60px;
+  }
+
+  .showcase-header {
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-showcase {
+    padding: 60px 20px;
+  }
+
+  .showcase-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .showcase-header {
+    margin-bottom: 40px;
+  }
+
+  .showcase-header h2 {
+    font-size: 2rem;
+  }
+
+  .showcase-description {
+    font-size: 14px;
+  }
+
+  .showcase-card {
+    padding: 24px;
+  }
+
+  .card-number {
+    font-size: 24px;
+  }
+
+  .showcase-card h3 {
+    font-size: 16px;
+  }
+}

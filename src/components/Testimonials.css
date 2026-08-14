@@ -1,0 +1,150 @@
+.testimonials {
+  background: #FFFFFF;
+  padding: 120px 0;
+  position: relative;
+}
+
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.testimonials-header h2 {
+  color: #050505;
+  margin-bottom: 40px;
+}
+
+.social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rating span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #050505;
+  margin-left: 12px;
+}
+
+.review-count {
+  font-size: 16px;
+  font-weight: 500;
+  color: rgba(5, 5, 5, 0.6);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.testimonial-card {
+  padding: 40px;
+  background: #F7F7F5;
+  border-radius: 16px;
+  border: 1px solid #EDEDED;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.testimonial-card:hover {
+  border-color: #C8A968;
+  box-shadow: 0 20px 40px rgba(200, 169, 104, 0.1);
+  transform: translateY(-4px);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 6px;
+}
+
+.testimonial-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(5, 5, 5, 0.8);
+  font-style: italic;
+  margin: 0;
+}
+
+.testimonial-author {
+  font-size: 14px;
+  font-weight: 600;
+  color: #050505;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .testimonials {
+    padding: 80px 0;
+  }
+
+  .testimonials-header {
+    margin-bottom: 60px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .testimonial-card {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 60px 20px;
+  }
+
+  .testimonials-header {
+    margin-bottom: 40px;
+  }
+
+  .testimonials-header h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+
+  .social-proof {
+    gap: 20px;
+  }
+
+  .rating span {
+    font-size: 14px;
+  }
+
+  .review-count {
+    font-size: 14px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .testimonial-card {
+    padding: 24px;
+  }
+
+  .testimonial-text {
+    font-size: 14px;
+  }
+
+  .testimonial-author {
+    font-size: 13px;
+  }
+}
