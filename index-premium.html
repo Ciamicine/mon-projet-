@@ -985,7 +985,7 @@
       const phoneGroup = new THREE.Group();
 
       // Phone body
-      const phoneGeometry = new THREE.RoundedBoxGeometry(0.32, 0.55, 0.025, 8, 0.02);
+      const phoneGeometry = new THREE.BoxGeometry(0.32, 0.55, 0.025);
       const phoneMaterial = new THREE.MeshStandardMaterial({
         color: 0x0a0a0a,
         metalness: 0.85,
@@ -1000,7 +1000,7 @@
       phoneGroup.add(phone);
 
       // Screen
-      const screenGeometry = new THREE.RoundedBoxGeometry(0.30, 0.52, 0.026, 8, 0.018);
+      const screenGeometry = new THREE.BoxGeometry(0.30, 0.52, 0.026);
       const screenMaterial = new THREE.MeshStandardMaterial({
         color: 0x222222,
         metalness: 0.3,
@@ -1015,7 +1015,7 @@
       phoneGroup.add(screen);
 
       // Notch
-      const notchGeometry = new THREE.RoundedBoxGeometry(0.12, 0.04, 0.027, 4, 0.01);
+      const notchGeometry = new THREE.BoxGeometry(0.12, 0.04, 0.027);
       const notchMaterial = new THREE.MeshStandardMaterial({
         color: 0x000000,
       });
