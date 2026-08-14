@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PtiDétour - Gourde Magnétique Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    /* ANIMATIONS GLOBALES */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotateZ(0deg); }
+      50% { transform: translateY(-30px) rotateZ(5deg); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(200, 169, 104, 0.3); }
+      50% { box-shadow: 0 0 60px rgba(200, 169, 104, 0.8); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(100px) rotateY(45deg); }
+      to { opacity: 1; transform: translateX(0) rotateY(0deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 40px;
+      background: rgba(5, 5, 5, 0.7);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(200, 169, 104, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: #C8A968;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #C8A968;
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+      color: white;
+      font-size: 18px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #061326 0%, #0a1f3a 50%, #050505 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(200, 169, 104, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      max-width: 1400px;
+      width: 100%;
+      padding: 0 40px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-text h1 {
+      font-size: 72px;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-weight: 700;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-text h1 .highlight {
+      background: linear-gradient(120deg, #C8A968, #E8C878, #C8A968);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s infinite;
+    }
+
+    .hero-text p {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #C8A968;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+
+    .btn {
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #C8A968, #E8C878);
+      color: #050505;
+      box-shadow: 0 10px 40px rgba(200, 169, 104, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(200, 169, 104, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #050505;
+      transform: scale(1.05);
+    }
+
+    /* BOUTEILLE 3D FLOTTANTE */
+    .bottle-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      animation: slideInRight 1s ease 0.3s both;
+    }
+
+    .bottle-wrapper {
+      width: 300px;
+      height: 500px;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+      filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.5));
+    }
+
+    .bottle {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333333 30%, #1a1a1a 60%, #0a0a0a 100%);
+      border-radius: 40px 40px 60px 60px;
+      position: relative;
+      box-shadow:
+        inset -20px 0 40px rgba(255, 255, 255, 0.1),
+        inset 20px 0 40px rgba(0, 0, 0, 0.8),
+        0 20px 60px rgba(200, 169, 104, 0.3);
+      animation: glow 3s ease-in-out infinite;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 50px;
+      background: linear-gradient(135deg, #E0B87A, #C8A968, #B39550);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(200, 169, 104, 0.4);
+    }
+
+    .magnetic-ring {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 130px;
+      border: 3px solid #C8A968;
+      border-radius: 50%;
+      box-shadow:
+        0 0 20px rgba(200, 169, 104, 0.5),
+        inset 0 0 20px rgba(200, 169, 104, 0.2);
+      animation: spin 8s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translateX(-50%) rotateZ(0deg); }
+      100% { transform: translateX(-50%) rotateZ(360deg); }
+    }
+
+    .bottle-shine {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 60px;
+      height: 200px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      border-radius: 50%;
+      filter: blur(20px);
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    @keyframes shine {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* FEATURES STRIP */
+    .features {
+      background: #FFFFFF;
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      text-align: center;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .feature:nth-child(1) { animation-delay: 0.1s; }
+    .feature:nth-child(2) { animation-delay: 0.2s; }
+    .feature:nth-child(3) { animation-delay: 0.3s; }
+    .feature:nth-child(4) { animation-delay: 0.4s; }
+
+    .feature-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .feature h3 {
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      color: #050505;
+    }
+
+    .feature p {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.6;
+    }
+
+    /* SECTION MAGNÉTIQUE */
+    .magnetic-section {
+      background: linear-gradient(135deg, #061326 0%, #0a1f3a 100%);
+      padding: 120px 40px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .magnetic-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .magnetic-text h2 {
+      font-size: 60px;
+      line-height: 1.2;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .magnetic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .magnetic-list li {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 18px;
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    .magnetic-list li:nth-child(1) { animation-delay: 0.2s; }
+    .magnetic-list li:nth-child(2) { animation-delay: 0.3s; }
+    .magnetic-list li:nth-child(3) { animation-delay: 0.4s; }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #C8A968;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(200, 169, 104, 0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .magnetic-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+    }
+
+    .magnetic-bottle {
+      width: 280px;
+      height: 450px;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333333 30%, #1a1a1a 60%, #0a0a0a 100%);
+      border-radius: 35px 35px 50px 50px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset -15px 0 30px rgba(255, 255, 255, 0.1);
+      animation: float 5s ease-in-out infinite;
+      position: relative;
+    }
+
+    /* SECTION PRODUIT */
+    .product-section {
+      background: #FFFFFF;
+      padding: 120px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-heading {
+      font-size: 52px;
+      text-align: center;
+      margin-bottom: 50px;
+      color: #050505;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .product-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, #F7F7F5 0%, #FFFFFF 100%);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid #EDEDED;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: fadeInUp 0.8s ease backwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card:nth-child(1) { animation-delay: 0.1s; }
+    .product-card:nth-child(2) { animation-delay: 0.2s; }
+    .product-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(200, 169, 104, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .product-card:hover::before {
+      left: 100%;
+    }
+
+    .product-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(200, 169, 104, 0.15);
+      border-color: #C8A968;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #050505;
+    }
+
+    .product-card p {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.7;
+    }
+
+    .product-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #C8A968;
+      margin-bottom: 15px;
+    }
+
+    /* CTA FINAL */
+    .final-cta {
+      background: linear-gradient(135deg, #C8A968 0%, #E8C878 100%);
+      padding: 80px 40px;
+      text-align: center;
+      color: #050505;
+    }
+
+    .final-cta h2 {
+      font-size: 52px;
+      margin-bottom: 20px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .final-cta p {
+      font-size: 18px;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .final-cta .btn {
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #050505;
+      color: white;
+      padding: 40px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar { flex-direction: column; gap: 20px; }
+      .nav-links { display: none; }
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .hero-text h1 { font-size: 42px; }
+      .features { grid-template-columns: 1fr; }
+      .magnetic-content { grid-template-columns: 1fr; }
+      .product-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">PtiDétour</div>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#produit">Produit</a></li>
+      <li><a href="#caracteristiques">Caractéristiques</a></li>
+      <li><a href="#avis">Avis</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <span>🔍</span>
+      <span>👤</span>
+      <span>🛍️</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="accueil">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Gourde Isotherme · 710 ml</div>
+        <h1>Votre boisson.<br>Votre téléphone.<br><span class="highlight">Toujours à portée.</span></h1>
+        <p>Une gourde premium avec support magnétique intégré. Gardez votre téléphone à portée de main tout en restant hydraté.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary">Découvrir la Gourde</button>
+          <button class="btn btn-secondary">Voir les Caractéristiques</button>
+        </div>
+      </div>
+      <div class="bottle-container">
+        <div class="bottle-wrapper">
+          <div class="bottle">
+            <div class="bottle-cap"></div>
+            <div class="magnetic-ring"></div>
+            <div class="bottle-shine"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <h3>Aimant Puissant</h3>
+      <p>Votre téléphone reste facilement à portée.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🌡️</div>
+      <h3>Isolation Thermique</h3>
+      <p>Gardez vos boissons fraîches ou chaudes pendant des heures.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💧</div>
+      <h3>710 ML</h3>
+      <p>Le format idéal pour votre quotidien.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🛡️</div>
+      <h3>Acier Inoxydable</h3>
+      <p>Un design durable pour vous accompagner partout.</p>
+    </div>
+  </section>
+
+  <!-- SECTION MAGNÉTIQUE -->
+  <section class="magnetic-section">
+    <div class="magnetic-content">
+      <div>
+        <h2>Votre Téléphone.<br>Toujours à Portée.</h2>
+        <ul class="magnetic-list">
+          <li><span class="dot"></span> Fixation Magnétique Puissante</li>
+          <li><span class="dot"></span> Accès Rapide à Votre Téléphone</li>
+          <li><span class="dot"></span> Utilisation Mains Libres</li>
+        </ul>
+      </div>
+      <div class="magnetic-image">
+        <div class="magnetic-bottle"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUIT -->
+  <section class="product-section" id="produit">
+    <h2 class="product-heading">Pourquoi Choisir PtiDétour?</h2>
+    <div class="product-cards">
+      <div class="product-card">
+        <div class="product-number">01</div>
+        <h3>Votre Téléphone à Portée</h3>
+        <p>Le support magnétique intégré permet de garder votre téléphone facilement accessible, peu importe où vous êtes.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-number">02</div>
+        <h3>Gardez la Bonne Température</h3>
+        <p>La double paroi isolante aide à conserver vos boissons froides ou chaudes pendant des heures.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-number">03</div>
+        <h3>Emportez-la Partout</h3>
+        <p>Son anneau intégré permet de l'accrocher facilement à votre sac lors de vos déplacements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <h2>Faites de Chaque Détour une Nouvelle Aventure</h2>
+    <p>Hydratez-vous. Emportez votre téléphone. Profitez du moment.</p>
+    <button class="btn btn-primary">Acheter Maintenant</button>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 PtiDétour. Tous droits réservés. | Votre compagnon pour chaque détour.</p>
+  </footer>
+
+</body>
+</html>

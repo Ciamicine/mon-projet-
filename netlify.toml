@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "echo 'Static HTML deployment' && mkdir -p dist && cp index-premium.html dist/index.html"
   publish = "dist"
 
 [dev]
