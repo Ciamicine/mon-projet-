@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PtiDétour - Gourde isotherme magnétique premium avec support téléphone intégré">
+  <title>PtiDétour - Votre Gourde Magnétique Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #FFFFFF;
+      color: #050505;
+      line-height: 1.6;
+      font-weight: 400;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography */
+    h1 { font-size: clamp(2.5rem, 10vw, 5.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h3 { font-size: 18px; font-weight: 600; }
+    p { font-size: 1rem; font-weight: 400; line-height: 1.8; }
+
+    a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+    button { font-family: inherit; cursor: pointer; border: none; transition: all 0.3s ease; }
+
+    /* Utilities */
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 24px 40px;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200, 169, 104, 0.1);
+    }
+
+    .navbar-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar-logo { font-size: 18px; font-weight: 700; color: white; letter-spacing: -0.5px; }
+
+    .navbar-menu {
+      display: flex;
+      gap: 48px;
+      margin: 0 auto 0 80px;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.7);
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #C8A968;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after { width: 100%; }
+
+    .navbar-actions {
+      display: flex;
+      gap: 20px;
+    }
+
+    .icon-button {
+      background: none;
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .icon-button:hover {
+      background: rgba(200, 169, 104, 0.1);
+      color: #C8A968;
+      transform: scale(1.1);
+    }
+
+    .mobile-menu-btn { display: none; }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 16px 20px; }
+      .navbar-menu { display: none; }
+      .navbar-actions { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .navbar-logo { font-size: 16px; }
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(6, 19, 38, 0.4) 0%, rgba(5, 5, 5, 0.6) 100%),
+                  url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1920 1080%22%3E%3Crect fill=%22%23061326%22 width=%221920%22 height=%221080%22/%3E%3C/svg%3E');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      width: 100%;
+      min-height: 100vh;
+    }
+
+    .hero-text { display: flex; flex-direction: column; justify-content: center; }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      color: #C8A968;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-heading {
+      color: white;
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .hero-heading .highlight { color: #C8A968; }
+
+    .hero-description {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.5s both;
+    }
+
+    .btn {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #050505;
+    }
+
+    .btn-primary:hover {
+      background: #F7F7F5;
+      transform: scale(1.02);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      border-color: #C8A968;
+      color: #C8A968;
+      transform: scale(1.02);
+    }
+
+    .hero-product {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      animation: fadeInRight 0.8s ease 0.4s both;
+    }
+
+    .product-image {
+      width: 100%;
+      max-width: 400px;
+      filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.4));
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 60px 20px 40px;
+        min-height: auto;
+        margin-top: 60px;
+      }
+
+      .hero-product { max-height: 400px; }
+      .product-image { max-width: 300px; }
+      .hero-buttons { flex-direction: column; }
+      .btn { width: 100%; text-align: center; }
+    }
+
+    /* FEATURE STRIP */
+    .feature-strip {
+      background: #FFFFFF;
+      padding: 80px 0;
+      border-top: 1px solid #EDEDED;
+      border-bottom: 1px solid #EDEDED;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .feature-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F7F7F5;
+      border-radius: 12px;
+      color: #C8A968;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      background: #C8A968;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #050505;
+    }
+
+    .feature-description {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .feature-strip { padding: 60px 20px; }
+      .features-grid { grid-template-columns: 1fr; gap: 24px; }
+    }
+
+    /* PRODUCT SHOWCASE */
+    .product-showcase {
+      background: #FFFFFF;
+      padding: 120px 0;
+    }
+
+    .showcase-header {
+      text-align: center;
+      margin-bottom: 80px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .showcase-header h2 {
+      color: #050505;
+      margin-bottom: 20px;
+    }
+
+    .showcase-description {
+      font-size: 18px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.8;
+    }
+
+    .showcase-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .showcase-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+    }
+
+    .showcase-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    }
+
+    .showcase-features {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .showcase-card {
+      padding: 32px;
+      border: 1px solid #EDEDED;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #C8A968;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .showcase-card:hover {
+      border-color: #C8A968;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    .showcase-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-number {
+      font-size: 32px;
+      font-weight: 700;
+      color: #C8A968;
+      margin-bottom: 16px;
+    }
+
+    .showcase-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #050505;
+      margin-bottom: 12px;
+    }
+
+    .showcase-card p {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .product-showcase { padding: 60px 20px; }
+      .showcase-content { grid-template-columns: 1fr; gap: 40px; }
+      .showcase-header { margin-bottom: 40px; }
+    }
+
+    /* LIFESTYLE GALLERY */
+    .lifestyle-gallery {
+      background: #FFFFFF;
+      padding: 120px 0;
+    }
+
+    .gallery-heading {
+      text-align: center;
+      color: #050505;
+      margin-bottom: 80px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    .gallery-card {
+      background: #F7F7F5;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-image {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #EDEDED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+    }
+
+    .gallery-content {
+      padding: 32px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gallery-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #050505;
+      margin-bottom: 12px;
+    }
+
+    .gallery-card p {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .gallery-card:hover {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .lifestyle-gallery { padding: 60px 20px; }
+      .gallery-heading { margin-bottom: 40px; font-size: 2rem; }
+      .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+      .gallery-image { aspect-ratio: 4/3; }
+    }
+
+    /* MAGNETIC FEATURE */
+    .magnetic-feature {
+      background: #061326;
+      padding: 120px 0;
+      color: white;
+    }
+
+    .magnetic-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .magnetic-text h2 {
+      color: white;
+      margin-bottom: 60px;
+    }
+
+    .magnetic-features {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .magnetic-feature-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .feature-dot {
+      width: 12px;
+      height: 12px;
+      background: #C8A968;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(200, 169, 104, 0.3);
+    }
+
+    .magnetic-feature-item span {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.3px;
+    }
+
+    .magnetic-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+    }
+
+    .magnetic-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .magnetic-feature { padding: 60px 20px; }
+      .magnetic-content { grid-template-columns: 1fr; gap: 40px; }
+      .magnetic-text h2 { font-size: 2rem; margin-bottom: 32px; }
+    }
+
+    /* BENEFITS */
+    .benefits {
+      background: #FFFFFF;
+      padding: 120px 0;
+    }
+
+    .benefits-heading {
+      text-align: center;
+      color: #050505;
+      margin-bottom: 80px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .benefit-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+      background: #F7F7F5;
+      border-radius: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .benefit-card:hover {
+      border-color: #C8A968;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(200, 169, 104, 0.1);
+    }
+
+    .benefit-icon {
+      font-size: 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .benefit-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #050505;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .benefit-card p {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .benefits { padding: 60px 20px; }
+      .benefits-heading { font-size: 2rem; margin-bottom: 40px; }
+      .benefits-grid { grid-template-columns: 1fr; gap: 20px; }
+      .benefit-card { padding: 28px; }
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      background: #FFFFFF;
+      padding: 120px 0;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .testimonials-header h2 {
+      color: #050505;
+      margin-bottom: 40px;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rating span {
+      font-size: 16px;
+      font-weight: 600;
+      color: #050505;
+      margin-left: 12px;
+    }
+
+    .review-count {
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(5, 5, 5, 0.6);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .testimonial-card {
+      padding: 40px;
+      background: #F7F7F5;
+      border-radius: 16px;
+      border: 1px solid #EDEDED;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-card:hover {
+      border-color: #C8A968;
+      box-shadow: 0 20px 40px rgba(200, 169, 104, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 6px;
+    }
+
+    .star { color: #C8A968; }
+
+    .testimonial-text {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+      color: rgba(5, 5, 5, 0.8);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .testimonial-author {
+      font-size: 14px;
+      font-weight: 600;
+      color: #050505;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .testimonials { padding: 60px 20px; }
+      .testimonials-header { margin-bottom: 40px; }
+      .testimonials-header h2 { font-size: 2rem; margin-bottom: 32px; }
+      .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+      .testimonial-card { padding: 24px; }
+    }
+
+    /* CTA */
+    .cta {
+      background: #061326;
+      padding: 120px 0;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .cta h2 {
+      color: white;
+      margin: 0;
+    }
+
+    .cta p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .btn-cta {
+      background: white;
+      color: #050505;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 16px 48px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .btn-cta:hover {
+      background: #F7F7F5;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 768px) {
+      .cta { padding: 60px 20px; }
+      .cta h2 { font-size: 2rem; }
+      .cta p { font-size: 14px; }
+      .btn-cta { width: 100%; text-align: center; }
+    }
+
+    /* PRODUCT CARD */
+    .product-card-section {
+      background: #FFFFFF;
+      padding: 80px 0;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      background: #F7F7F5;
+      border-radius: 20px;
+      padding: 60px;
+      border: 1px solid #EDEDED;
+    }
+
+    .product-card-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+    }
+
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-card-details {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .product-info h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #050505;
+      margin-bottom: 8px;
+    }
+
+    .product-subtitle {
+      font-size: 14px;
+      color: rgba(5, 5, 5, 0.6);
+      margin-bottom: 16px;
+    }
+
+    .product-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #C8A968;
+    }
+
+    .product-colors label,
+    .product-quantity label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #050505;
+      margin-bottom: 12px;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .color-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .color-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: block;
+      transition: all 0.3s ease;
+      border: 2px solid #EDEDED;
+    }
+
+    .color-button.active .color-dot {
+      box-shadow: 0 0 0 2px #C8A968;
+    }
+
+    .color-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #050505;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      border: 1px solid #EDEDED;
+      border-radius: 8px;
+      width: fit-content;
+    }
+
+    .quantity-btn {
+      background: none;
+      border: none;
+      color: #050505;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quantity-btn:hover {
+      background: #EDEDED;
+    }
+
+    .quantity-input {
+      width: 60px;
+      height: 40px;
+      border: none;
+      text-align: center;
+      font-weight: 600;
+      font-size: 14px;
+      background: none;
+      color: #050505;
+    }
+
+    .quantity-input:focus {
+      outline: none;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-add-cart {
+      flex: 1;
+      background: #050505;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      min-width: 180px;
+    }
+
+    .btn-add-cart:hover {
+      background: #1a1a1a;
+      transform: scale(1.02);
+    }
+
+    .btn-buy-now {
+      flex: 1;
+      background: transparent;
+      color: #050505;
+      border: 2px solid #050505;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-transform: uppercase;
+      min-width: 180px;
+    }
+
+    .btn-buy-now:hover {
+      background: #050505;
+      color: white;
+      transform: scale(1.02);
+    }
+
+    .trust-elements {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid #EDEDED;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(5, 5, 5, 0.6);
+    }
+
+    .trust-item::before {
+      content: '✓';
+      color: #C8A968;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .product-card-section { padding: 60px 20px; }
+      .product-card { grid-template-columns: 1fr; gap: 40px; padding: 32px; }
+      .product-actions { flex-direction: column; }
+      .btn-add-cart, .btn-buy-now { min-width: 100%; width: 100%; }
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #061326;
+      color: white;
+      padding: 80px 0 40px;
+      border-top: 1px solid rgba(200, 169, 104, 0.1);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: white;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      max-width: 300px;
+    }
+
+    .footer-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .footer-column h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: #C8A968;
+      transform: translateX(4px);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(200, 169, 104, 0.1);
+      color: #C8A968;
+      transition: all 0.3s ease;
+      font-size: 20px;
+    }
+
+    .social-link:hover {
+      background: #C8A968;
+      color: white;
+    }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(200, 169, 104, 0.1);
+      margin-bottom: 40px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copyright {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .scroll-to-top {
+      background: rgba(200, 169, 104, 0.1);
+      color: #C8A968;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 20px;
+    }
+
+    .scroll-to-top:hover {
+      background: #C8A968;
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    @media (max-width: 768px) {
+      .footer { padding: 60px 20px 40px; }
+      .footer-top { grid-template-columns: 1fr; gap: 40px; margin-bottom: 40px; }
+      .footer-columns { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-container">
+      <div class="navbar-logo">PtiDétour</div>
+      <div class="navbar-menu">
+        <a href="#" class="nav-link">Accueil</a>
+        <a href="#product" class="nav-link">Produit</a>
+        <a href="#features" class="nav-link">Caractéristiques</a>
+        <a href="#testimonials" class="nav-link">Avis</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="navbar-actions">
+        <button class="icon-button">🔍</button>
+        <button class="icon-button">👤</button>
+        <button class="icon-button">🛍️</button>
+      </div>
+      <button class="icon-button mobile-menu-btn" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">GOURDE ISOTHERME · 710 ML</div>
+        <h1 class="hero-heading">Votre boisson.<br>Votre téléphone.<br><span class="highlight">Toujours à portée.</span></h1>
+        <p class="hero-description">Une gourde premium avec support magnétique intégré.<br>Gardez votre téléphone à portée de main tout en restant hydraté.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary">DÉCOUVRIR LA GOURDE</button>
+          <button class="btn btn-secondary">VOIR LES CARACTÉRISTIQUES</button>
+        </div>
+      </div>
+      <div class="hero-product">
+        <svg class="product-image" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bottle-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#000000;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#111111;stop-opacity:1" />
+            </linearGradient>
+            <radialGradient id="shine" cx="35%" cy="35%" r="60%">
+              <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.4" />
+              <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0" />
+            </radialGradient>
+          </defs>
+          <rect fill="#061326" width="400" height="600"/>
+          <ellipse cx="200" cy="420" rx="60" ry="140" fill="url(#bottle-grad)"/>
+          <ellipse cx="180" cy="350" rx="30" ry="80" fill="url(#shine)" opacity="0.6"/>
+          <rect x="170" y="100" width="60" height="30" rx="3" fill="#C8A968"/>
+          <circle cx="200" cy="115" r="35" fill="none" stroke="#C8A968" stroke-width="3"/>
+          <rect x="100" y="80" width="80" height="140" rx="8" fill="#050505" stroke="#EDEDED" stroke-width="2"/>
+          <rect x="108" y="88" width="64" height="120" fill="#333333"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE STRIP -->
+  <section class="feature-strip">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3 class="feature-title">AIMANT PUISSANT</h3>
+          <p class="feature-description">Votre téléphone reste facilement à portée.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌡️</div>
+          <h3 class="feature-title">ISOLATION THERMIQUE</h3>
+          <p class="feature-description">Gardez vos boissons fraîches ou chaudes pendant des heures.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💧</div>
+          <h3 class="feature-title">710 ML</h3>
+          <p class="feature-description">Le format idéal pour votre quotidien.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3 class="feature-title">ACIER INOXYDABLE</h3>
+          <p class="feature-description">Un design durable conçu pour vous accompagner partout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE -->
+  <section class="product-showcase" id="product">
+    <div class="container">
+      <div class="showcase-header">
+        <h2>Plus qu'une gourde.<br>Votre compagnon du quotidien.</h2>
+        <p class="showcase-description">Du bureau aux sentiers de randonnée, PtiDétour combine hydratation, technologie et design dans un seul objet.</p>
+      </div>
+      <div class="showcase-content">
+        <div class="showcase-image">
+          <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bottle-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#000000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#111111;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect fill="#F7F7F5" width="400" height="500"/>
+            <ellipse cx="200" cy="350" rx="55" ry="130" fill="url(#bottle-grad-2)"/>
+            <rect x="170" y="80" width="60" height="30" rx="3" fill="#C8A968"/>
+            <circle cx="200" cy="95" r="35" fill="none" stroke="#C8A968" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="showcase-features">
+          <div class="showcase-card">
+            <div class="card-number">01</div>
+            <h3>VOTRE TÉLÉPHONE À PORTÉE</h3>
+            <p>Le support magnétique intégré permet de garder votre téléphone facilement accessible.</p>
+          </div>
+          <div class="showcase-card">
+            <div class="card-number">02</div>
+            <h3>GARDEZ LA BONNE TEMPÉRATURE</h3>
+            <p>La double paroi isolante aide à conserver vos boissons froides ou chaudes.</p>
+          </div>
+          <div class="showcase-card">
+            <div class="card-number">03</div>
+            <h3>EMPORTEZ-LA PARTOUT</h3>
+            <p>Son anneau intégré permet de l'accrocher facilement à votre sac.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE GALLERY -->
+  <section class="lifestyle-gallery">
+    <div class="container">
+      <h2 class="gallery-heading">Votre compagnon partout</h2>
+      <div class="gallery-grid">
+        <div class="gallery-card">
+          <div class="gallery-image">🥾</div>
+          <div class="gallery-content">
+            <h3>RANDONNÉE</h3>
+            <p>Bottle attached to a backpack in nature.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-image">⛳</div>
+          <div class="gallery-content">
+            <h3>GOLF</h3>
+            <p>Bottle next to golf equipment on a green course.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-image">✈️</div>
+          <div class="gallery-content">
+            <h3>VOYAGE</h3>
+            <p>Bottle on an airplane tray table with a phone attached.</p>
+          </div>
+        </div>
+        <div class="gallery-card">
+          <div class="gallery-image">💼</div>
+          <div class="gallery-content">
+            <h3>BUREAU</h3>
+            <p>Bottle on a modern desk with a phone attached.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAGNETIC FEATURE -->
+  <section class="magnetic-feature">
+    <div class="container">
+      <div class="magnetic-content">
+        <div class="magnetic-text">
+          <h2>Votre téléphone.<br>Toujours à portée.</h2>
+          <div class="magnetic-features">
+            <div class="magnetic-feature-item">
+              <div class="feature-dot"></div>
+              <span>FIXATION MAGNÉTIQUE</span>
+            </div>
+            <div class="magnetic-feature-item">
+              <div class="feature-dot"></div>
+              <span>ACCÈS RAPIDE À VOTRE TÉLÉPHONE</span>
+            </div>
+            <div class="magnetic-feature-item">
+              <div class="feature-dot"></div>
+              <span>MAINS LIBRES</span>
+            </div>
+          </div>
+        </div>
+        <div class="magnetic-image">
+          <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="cap-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#E0B87A;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#B39550;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect fill="#061326" width="300" height="400"/>
+            <rect x="100" y="80" width="100" height="50" rx="4" fill="url(#cap-grad)"/>
+            <circle cx="150" cy="105" r="60" fill="none" stroke="#C8A968" stroke-width="3"/>
+            <text x="150" y="350" font-family="Inter" font-size="14" fill="#C8A968" text-anchor="middle" font-weight="600">Support Magnétique</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits" id="features">
+    <div class="container">
+      <h2 class="benefits-heading">Pensée pour votre quotidien.</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">✨</div>
+          <h3>DESIGN PREMIUM</h3>
+          <p>Minimaliste, élégant et moderne.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💧</div>
+          <h3>HYDRATATION</h3>
+          <p>710 ml pour vous accompagner toute la journée.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">♻️</div>
+          <h3>DURABLE</h3>
+          <p>Conçue pour être réutilisée encore et encore.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌍</div>
+          <h3>POLYVALENTE</h3>
+          <p>Sport, travail, voyage ou aventure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <h2>Ils ont adopté PtiDétour.</h2>
+        <div class="social-proof">
+          <div class="rating">
+            <span class="star">★★★★★</span>
+            <span>4.9/5</span>
+          </div>
+          <span class="review-count">+500 clients</span>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><span class="star">★★★★★</span></div>
+          <blockquote class="testimonial-text">"Le design est incroyable et le support téléphone est vraiment pratique."</blockquote>
+          <p class="testimonial-author">— Alex M.</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><span class="star">★★★★★</span></div>
+          <blockquote class="testimonial-text">"Je l'utilise au travail et à la salle de sport tous les jours."</blockquote>
+          <p class="testimonial-author">— Sarah L.</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars"><span class="star">★★★★★</span></div>
+          <blockquote class="testimonial-text">"Très belle gourde, solide et super pratique pour voyager."</blockquote>
+          <p class="testimonial-author">— Thomas R.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Faites de chaque détour<br>une nouvelle aventure.</h2>
+        <p>Hydratez-vous. Emportez votre téléphone. Profitez du moment.</p>
+        <button class="btn btn-cta">ACHETER MAINTENANT</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT CARD -->
+  <section class="product-card-section" id="contact">
+    <div class="container">
+      <div class="product-card">
+        <div class="product-card-image">
+          <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bottle-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#333333;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#000000;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#111111;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect fill="#F7F7F5" width="400" height="500"/>
+            <ellipse cx="200" cy="350" rx="55" ry="130" fill="url(#bottle-grad-3)"/>
+            <rect x="170" y="80" width="60" height="30" rx="3" fill="#C8A968"/>
+            <circle cx="200" cy="95" r="35" fill="none" stroke="#C8A968" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="product-card-details">
+          <div class="product-info">
+            <h3>PtiDétour Magnetic Bottle</h3>
+            <p class="product-subtitle">Gourde isotherme magnétique · 710 ml</p>
+            <p class="product-price">$XX.XX CAD</p>
+          </div>
+
+          <div class="product-colors">
+            <label>Couleur</label>
+            <div class="color-options">
+              <button class="color-button active" onclick="selectColor(this, '#050505')">
+                <span class="color-dot" style="background-color: #050505;"></span>
+                <span class="color-label">Noir Matte</span>
+              </button>
+              <button class="color-button" onclick="selectColor(this, '#FFFFFF')">
+                <span class="color-dot" style="background-color: #FFFFFF; border: 2px solid #EDEDED;"></span>
+                <span class="color-label">Blanc</span>
+              </button>
+              <button class="color-button" onclick="selectColor(this, '#8B8B8B')">
+                <span class="color-dot" style="background-color: #8B8B8B;"></span>
+                <span class="color-label">Gris</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="product-quantity">
+            <label>Quantité</label>
+            <div class="quantity-controls">
+              <button class="quantity-btn" onclick="decreaseQty()">−</button>
+              <input type="number" class="quantity-input" id="qty" value="1" readonly>
+              <button class="quantity-btn" onclick="increaseQty()">+</button>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn btn-add-cart">AJOUTER AU PANIER</button>
+            <button class="btn btn-buy-now">ACHETER MAINTENANT</button>
+          </div>
+
+          <div class="trust-elements">
+            <div class="trust-item">Livraison sécurisée</div>
+            <div class="trust-item">Paiement sécurisé</div>
+            <div class="trust-item">Retours faciles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>PtiDétour</h3>
+          <p>Votre compagnon pour chaque détour.</p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h4>Navigation</h4>
+            <div class="footer-links">
+              <a href="#">Accueil</a>
+              <a href="#">Boutique</a>
+              <a href="#">Caractéristiques</a>
+              <a href="#">FAQ</a>
+              <a href="#">Contact</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4>Service Client</h4>
+            <div class="footer-links">
+              <a href="#">Livraison</a>
+              <a href="#">Retours</a>
+              <a href="#">Politique de confidentialité</a>
+              <a href="#">Conditions générales</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h4>Suivez-nous</h4>
+            <div class="social-links">
+              <a href="#" class="social-link">❤️</a>
+              <a href="#" class="social-link">↗️</a>
+              <a href="#" class="social-link">👥</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 PtiDétour. Tous droits réservés.</p>
+        <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Product interactions
+    function selectColor(btn, color) {
+      document.querySelectorAll('.color-button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    function increaseQty() {
+      const qty = document.getElementById('qty');
+      qty.value = parseInt(qty.value) + 1;
+    }
+
+    function decreaseQty() {
+      const qty = document.getElementById('qty');
+      if (parseInt(qty.value) > 1) {
+        qty.value = parseInt(qty.value) - 1;
+      }
+    }
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      console.log('Menu toggled');
+    }
+  </script>
+</body>
+</html>
