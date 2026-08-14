@@ -1,0 +1,41 @@
+[
+  {
+    "name": "theme_info",
+    "theme": {
+      "name": "HydroMag Premium",
+      "id": 12345678
+    }
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Color",
+        "default": "#0ea5e9"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color",
+        "default": "#ec4899"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading Font"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body Font"
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "icon": "⚡",
+            "title": "Ultra Secure",
+            "description": "Magnetic grip technology"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "icon": "🛡️",
+            "title": "Eco-Friendly",
+            "description": "Sustainable materials"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "icon": "📱",
+            "title": "All Phones",
+            "description": "Universal compatibility"
+          }
+        }
+      },
+      "settings": {
+        "badge_text": "Premium Hydration Technology",
+        "heading": "<p>Stay <strong>Hydrated</strong>, Keep Your Phone <strong>Close</strong></p>",
+        "description": "Experience the revolution in mobile hydration. Our magnetic water bottles securely attach your smartphone while keeping you refreshed throughout the day.",
+        "button_primary_label": "Shop Now",
+        "button_primary_link": "/collections/all",
+        "button_secondary_label": "Learn More",
+        "button_secondary_link": "/pages/about"
+      }
+    },
+    "featured-products": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "full_width": true,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": ["hero", "featured-products"]
+}

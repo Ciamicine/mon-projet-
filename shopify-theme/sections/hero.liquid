@@ -1,0 +1,362 @@
+<div class="hero-section">
+  <div class="hero-container">
+    <div class="hero-gradient-bg">
+      <div class="gradient-blob gradient-blob-1"></div>
+      <div class="gradient-blob gradient-blob-2"></div>
+      <div class="gradient-blob gradient-blob-3"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span>✨ {{ section.settings.badge_text }}</span>
+        </div>
+
+        <h1 class="hero-title">
+          {{ section.settings.heading | strip_html }}
+        </h1>
+
+        <p class="hero-description">
+          {{ section.settings.description }}
+        </p>
+
+        <div class="hero-buttons">
+          <a href="{{ section.settings.button_primary_link }}" class="button button-primary">
+            {{ section.settings.button_primary_label }}
+          </a>
+          <a href="{{ section.settings.button_secondary_link }}" class="button button-secondary">
+            {{ section.settings.button_secondary_label }}
+          </a>
+        </div>
+
+        <div class="hero-features">
+          {% for block in section.blocks %}
+            {% if block.type == 'feature' %}
+              <div class="hero-feature">
+                <div class="feature-icon">{{ block.settings.icon }}</div>
+                <div class="feature-text">
+                  <strong>{{ block.settings.title }}</strong>
+                  <p>{{ block.settings.description }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        {% if section.settings.image != blank %}
+          <img src="{{ section.settings.image | image_url: width: 600 }}" alt="Hero Image" class="hero-image">
+        {% else %}
+          <div class="hero-placeholder">
+            <span class="placeholder-emoji">🌊</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+
+  .hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    width: 100%;
+  }
+
+  .hero-gradient-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+  }
+
+  .gradient-blob-1 {
+    top: 0;
+    left: 25%;
+    width: 384px;
+    height: 384px;
+    background: #0ea5e9;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .gradient-blob-2 {
+    bottom: 0;
+    right: 25%;
+    width: 384px;
+    height: 384px;
+    background: #ec4899;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 1s;
+  }
+
+  .gradient-blob-3 {
+    top: 50%;
+    right: 0;
+    width: 384px;
+    height: 384px;
+    background: #a855f7;
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-text {
+    space: 24px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #dbeafe, #fbf1f3);
+    font-size: 0.875rem;
+    font-weight: 600;
+    background-clip: text;
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 8vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    color: #4b5563;
+    max-width: 448px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .button {
+    padding: 16px 32px;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .button-primary {
+    background: linear-gradient(135deg, #0ea5e9, #0284c7);
+    color: white;
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+  }
+
+  .button-primary:hover {
+    box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+    transform: translateY(-4px);
+  }
+
+  .button-secondary {
+    border: 2px solid #0ea5e9;
+    color: #0ea5e9;
+  }
+
+  .button-secondary:hover {
+    background: #f0f9ff;
+  }
+
+  .hero-features {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .hero-feature {
+    display: flex;
+    gap: 12px;
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .feature-text strong {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 4px;
+  }
+
+  .feature-text p {
+    color: #64748b;
+    font-size: 0.875rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    height: 384px;
+  }
+
+  .hero-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(236, 72, 153, 0.1));
+    border-radius: 24px;
+  }
+
+  .placeholder-emoji {
+    font-size: 9rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .hero-visual {
+      height: 256px;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+
+    .button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Premium Hydration Technology"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>Stay <strong>Hydrated</strong>, Keep Your Phone <strong>Close</strong></p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Experience the revolution in mobile hydration. Our magnetic water bottles securely attach your smartphone."
+    },
+    {
+      "type": "url",
+      "id": "button_primary_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_primary_label",
+      "label": "Primary Button Label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_label",
+      "label": "Secondary Button Label",
+      "default": "Learn More"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon Emoji",
+          "default": "⚡"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Feature description here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}
