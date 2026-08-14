@@ -41,19 +41,22 @@ export default function FeatureStrip() {
     >
       <div className="container">
         <div className="features-grid">
-          {content.features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className="feature-card"
-              variants={itemVariants}
-            >
-              <div className="feature-icon">
-                {icons[index]?.Icon && <icons[index].Icon size={24} />}
-              </div>
-              <h3 className="feature-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-            </motion.div>
-          ))}
+          {content.features.map((feature, index) => {
+            const IconComponent = icons[index]?.Icon
+            return (
+              <motion.div
+                key={index}
+                className="feature-card"
+                variants={itemVariants}
+              >
+                <div className="feature-icon">
+                  {IconComponent && <IconComponent size={24} />}
+                </div>
+                <h3 className="feature-title">{feature.title}</h3>
+                <p className="feature-description">{feature.description}</p>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </motion.section>

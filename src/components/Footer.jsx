@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Instagram, Music, Facebook, ChevronUp } from 'lucide-react'
+import { Heart, Share2, Users, ChevronUp } from 'lucide-react'
 import { colors, content } from '../config'
 import './Footer.css'
 
@@ -20,11 +20,11 @@ export default function Footer() {
   const getSocialIcon = (iconName) => {
     switch (iconName) {
       case 'Instagram':
-        return <Instagram size={20} />
+        return <Heart size={20} />
       case 'Music':
-        return <Music size={20} />
+        return <Share2 size={20} />
       case 'Facebook':
-        return <Facebook size={20} />
+        return <Users size={20} />
       default:
         return null
     }
