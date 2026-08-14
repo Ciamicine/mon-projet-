@@ -674,85 +674,100 @@
     function createBottle() {
       bottle = new THREE.Group();
 
-      // Body - simple cylinder
-      const bodyGeom = new THREE.CylinderGeometry(0.5, 0.45, 1.8, 64, 32);
+      // Body - realistic water bottle shape (black)
+      const bodyGeom = new THREE.CylinderGeometry(0.48, 0.5, 1.9, 64, 32);
       const bodyMat = new THREE.MeshStandardMaterial({
-        color: 0xFF5555,
-        metalness: 0.2,
-        roughness: 0.3,
-        emissive: 0x330000,
-        emissiveIntensity: 0.1
+        color: 0x0a0a0a,
+        metalness: 0.15,
+        roughness: 0.4,
+        emissive: 0x0a0a0a,
+        emissiveIntensity: 0.05
       });
       const body = new THREE.Mesh(bodyGeom, bodyMat);
       body.castShadow = true;
       body.receiveShadow = true;
       bottle.add(body);
 
-      // Cap
-      const capGeom = new THREE.CylinderGeometry(0.35, 0.38, 0.4, 64);
+      // Cap - sleek design
+      const capGeom = new THREE.CylinderGeometry(0.38, 0.42, 0.35, 64);
       const capMat = new THREE.MeshStandardMaterial({
-        color: 0x1a1a1a,
-        metalness: 0.8,
-        roughness: 0.2
+        color: 0x0d0d0d,
+        metalness: 0.7,
+        roughness: 0.25
       });
       const cap = new THREE.Mesh(capGeom, capMat);
-      cap.position.y = 1.1;
+      cap.position.y = 1.12;
       cap.castShadow = true;
       cap.receiveShadow = true;
       bottle.add(cap);
 
-      // Top knob
-      const knobGeom = new THREE.SphereGeometry(0.3, 32, 32);
+      // Cap top knob
+      const knobGeom = new THREE.SphereGeometry(0.25, 32, 32);
       const knobMat = new THREE.MeshStandardMaterial({
         color: 0x0a0a0a,
-        metalness: 0.9,
-        roughness: 0.1
+        metalness: 0.8,
+        roughness: 0.15
       });
       const knob = new THREE.Mesh(knobGeom, knobMat);
-      knob.scale.y = 0.5;
-      knob.position.y = 1.4;
+      knob.scale.y = 0.6;
+      knob.position.y = 1.42;
       knob.castShadow = true;
       bottle.add(knob);
 
-      // Magnetic ring
-      const ringGeom = new THREE.TorusGeometry(0.52, 0.07, 64, 256);
+      // Magnetic ring - gold accent on cap
+      const ringGeom = new THREE.TorusGeometry(0.48, 0.06, 64, 256);
       const ringMat = new THREE.MeshStandardMaterial({
         color: 0xD4AF37,
-        metalness: 0.95,
-        roughness: 0.1,
-        emissive: 0xB8860B,
-        emissiveIntensity: 0.4
+        metalness: 0.98,
+        roughness: 0.05,
+        emissive: 0x8B6F47,
+        emissiveIntensity: 0.3
       });
       const ring = new THREE.Mesh(ringGeom, ringMat);
-      ring.position.y = 0.95;
-      ring.rotation.x = Math.PI / 2.2;
-      ring.scale.set(1, 0.6, 1);
+      ring.position.y = 1.02;
+      ring.rotation.x = Math.PI / 2;
       ring.castShadow = true;
+      ring.receiveShadow = true;
       bottle.add(ring);
 
-      // Phone
-      const phoneGeom = new THREE.BoxGeometry(0.3, 0.55, 0.02);
+      // Phone - hanging from magnetic ring
+      const phoneGeom = new THREE.BoxGeometry(0.32, 0.6, 0.015);
       const phoneMat = new THREE.MeshStandardMaterial({
-        color: 0x0a0a0a,
-        metalness: 0.9,
-        roughness: 0.1
+        color: 0x1a1a1a,
+        metalness: 0.8,
+        roughness: 0.2,
+        emissive: 0x0a0a0a,
+        emissiveIntensity: 0.1
       });
       const phone = new THREE.Mesh(phoneGeom, phoneMat);
-      phone.position.set(0, 1.25, 0.15);
-      phone.rotation.x = -0.3;
+      phone.position.set(0.38, 0.65, 0);
+      phone.rotation.z = 0.25;
       phone.castShadow = true;
+      phone.receiveShadow = true;
       bottle.add(phone);
 
+      // Phone screen
+      const screenGeom = new THREE.BoxGeometry(0.3, 0.55, 0.001);
+      const screenMat = new THREE.MeshStandardMaterial({
+        color: 0x0a0a0a,
+        metalness: 0.1,
+        roughness: 0.1
+      });
+      const screen = new THREE.Mesh(screenGeom, screenMat);
+      screen.position.set(0.38, 0.65, 0.008);
+      screen.rotation.z = 0.25;
+      bottle.add(screen);
+
       // Shadow
-      const shadowGeom = new THREE.CircleGeometry(1.0, 64);
+      const shadowGeom = new THREE.CircleGeometry(1.2, 64);
       const shadowMat = new THREE.MeshBasicMaterial({
         color: 0x000000,
         transparent: true,
-        opacity: 0.25
+        opacity: 0.3
       });
       const shadow = new THREE.Mesh(shadowGeom, shadowMat);
       shadow.rotation.x = -Math.PI / 2;
-      shadow.position.y = -1.0;
+      shadow.position.y = -1.1;
       bottle.add(shadow);
 
       scene.add(bottle);
