@@ -15,36 +15,55 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background: #FFFFFF;
       overflow-x: hidden;
     }
 
-    /* ANIMATIONS GLOBALES */
+    /* ===== ANIMATIONS GLOBALES ===== */
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-      50% { transform: translateY(-30px) rotateZ(5deg); }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-40px); }
+    }
+
+    @keyframes floatRotate {
+      0%, 100% { transform: translateY(0px) rotateZ(-5deg); }
+      50% { transform: translateY(-40px) rotateZ(5deg); }
     }
 
     @keyframes glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(200, 169, 104, 0.3); }
-      50% { box-shadow: 0 0 60px rgba(200, 169, 104, 0.8); }
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(200, 169, 104, 0.4)) drop-shadow(0 20px 60px rgba(200, 169, 104, 0.2)); }
+      50% { filter: drop-shadow(0 0 40px rgba(200, 169, 104, 0.8)) drop-shadow(0 30px 80px rgba(200, 169, 104, 0.4)); }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
+      from { opacity: 0; transform: translateY(60px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(100px) rotateY(45deg); }
+      from { opacity: 0; transform: translateX(100px) rotateY(-30deg); }
       to { opacity: 1; transform: translateX(0) rotateY(0deg); }
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    @keyframes spin {
+      0% { transform: translateX(-50%) rotateZ(0deg); }
+      100% { transform: translateX(-50%) rotateZ(360deg); }
+    }
+
+    @keyframes shine {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.8; }
     }
 
     @keyframes shimmer {
@@ -52,16 +71,22 @@
       100% { background-position: 1000px 0; }
     }
 
-    /* NAVBAR */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== NAVBAR ===== */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
       padding: 20px 40px;
-      background: rgba(5, 5, 5, 0.7);
+      background: rgba(5, 5, 5, 0.8);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(200, 169, 104, 0.2);
+      border-bottom: 1px solid rgba(200, 169, 104, 0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -77,7 +102,7 @@
 
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 50px;
       list-style: none;
     }
 
@@ -86,12 +111,14 @@
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
       position: relative;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
       color: #C8A968;
+      transform: translateY(-2px);
     }
 
     .nav-links a::after {
@@ -102,85 +129,73 @@
       width: 0;
       height: 2px;
       background: #C8A968;
-      transition: width 0.3s;
+      transition: width 0.4s ease;
     }
 
     .nav-links a:hover::after {
       width: 100%;
     }
 
-    .nav-icons {
-      display: flex;
-      gap: 20px;
-      color: white;
-      font-size: 18px;
-    }
-
-    /* HERO */
+    /* ===== HERO SECTION ===== */
     .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #061326 0%, #0a1f3a 50%, #050505 100%);
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0e27 0%, #1a0f2e 25%, #2d1b42 50%, #1a0f2e 75%, #0a0e27 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
       padding-top: 80px;
     }
 
+    /* Gradient animé en arrière-plan */
     .hero::before {
       content: '';
       position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(200, 169, 104, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse 4s ease-in-out infinite;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(200, 169, 104, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(200, 169, 104, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(200, 169, 104, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+      animation: fadeInUp 2s ease;
     }
 
     .hero-content {
+      position: relative;
+      z-index: 10;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
-      max-width: 1400px;
-      width: 100%;
-      padding: 0 40px;
       align-items: center;
-      position: relative;
-      z-index: 10;
+      max-width: 1600px;
+      width: 100%;
+      padding: 0 60px;
     }
 
-    .hero-text h1 {
-      font-size: 72px;
+    .hero-text {
       color: white;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      font-weight: 700;
-      animation: fadeInUp 0.8s ease 0.2s both;
-    }
-
-    .hero-text h1 .highlight {
-      background: linear-gradient(120deg, #C8A968, #E8C878, #C8A968);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s infinite;
-    }
-
-    .hero-text p {
-      font-size: 20px;
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 30px;
-      animation: fadeInUp 0.8s ease 0.4s both;
     }
 
     .hero-eyebrow {
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 2px;
       color: #C8A968;
@@ -188,21 +203,139 @@
       animation: fadeInUp 0.8s ease 0.1s both;
     }
 
+    .hero-text h1 {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-text h1 .highlight {
+      color: #C8A968;
+      background: linear-gradient(135deg, #C8A968, #E8C878);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 500px;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
     .cta-buttons {
       display: flex;
       gap: 20px;
-      animation: fadeInUp 0.8s ease 0.6s both;
+      animation: fadeInUp 0.8s ease 0.4s both;
     }
 
+    /* ===== BOUTEILLE 3D FLOTTANTE ===== */
+    .bottle-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      animation: slideInRight 1s ease 0.3s both;
+      height: 600px;
+    }
+
+    .bottle-wrapper {
+      width: 320px;
+      height: 520px;
+      position: relative;
+      animation: floatRotate 5s ease-in-out infinite;
+      filter: drop-shadow(0 60px 120px rgba(0, 0, 0, 0.7)) drop-shadow(0 20px 40px rgba(200, 169, 104, 0.3));
+      animation: floatRotate 5s ease-in-out infinite, glow 4s ease-in-out infinite;
+    }
+
+    .bottle {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0d0d0d 0%, #2a2a2a 20%, #1a1a1a 50%, #0a0a0a 80%, #050505 100%);
+      border-radius: 60px 60px 80px 80px;
+      position: relative;
+      box-shadow:
+        inset -30px -30px 60px rgba(0, 0, 0, 0.9),
+        inset 30px 30px 60px rgba(255, 255, 255, 0.15),
+        inset -15px 0 40px rgba(200, 169, 104, 0.1),
+        0 0 60px rgba(200, 169, 104, 0.3);
+    }
+
+    /* Highlight sur la bouteille */
+    .bottle::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      width: 80px;
+      height: 250px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      border-radius: 50%;
+      filter: blur(25px);
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    .bottle-cap {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140px;
+      height: 60px;
+      background: linear-gradient(135deg, #E8C878 0%, #D4A960 50%, #B8935A 100%);
+      border-radius: 30px;
+      box-shadow:
+        0 15px 40px rgba(200, 169, 104, 0.5),
+        inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+        inset 10px 10px 20px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Anneau magnétique */
+    .magnetic-ring {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 150px;
+      border: 4px solid #C8A968;
+      border-radius: 50%;
+      box-shadow:
+        0 0 30px rgba(200, 169, 104, 0.6),
+        inset 0 0 30px rgba(200, 169, 104, 0.3),
+        0 0 60px rgba(200, 169, 104, 0.2);
+      animation: spin 8s linear infinite;
+    }
+
+    .magnetic-ring::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border: 2px solid rgba(200, 169, 104, 0.4);
+      border-radius: 50%;
+      animation: spin 12s linear infinite reverse;
+    }
+
+    /* ===== BOUTONS ===== */
     .btn {
       padding: 16px 40px;
-      border-radius: 50px;
       font-size: 14px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       border: none;
       cursor: pointer;
+      border-radius: 8px;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
@@ -211,114 +344,40 @@
     .btn-primary {
       background: linear-gradient(135deg, #C8A968, #E8C878);
       color: #050505;
-      box-shadow: 0 10px 40px rgba(200, 169, 104, 0.3);
+      box-shadow: 0 15px 40px rgba(200, 169, 104, 0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(200, 169, 104, 0.5);
+      box-shadow: 0 25px 70px rgba(200, 169, 104, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
       background: transparent;
       color: white;
       border: 2px solid white;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary:hover {
       background: white;
       color: #050505;
       transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
     }
 
-    /* BOUTEILLE 3D FLOTTANTE */
-    .bottle-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      perspective: 1000px;
-      animation: slideInRight 1s ease 0.3s both;
-    }
-
-    .bottle-wrapper {
-      width: 300px;
-      height: 500px;
-      position: relative;
-      animation: float 4s ease-in-out infinite;
-      filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.5));
-    }
-
-    .bottle {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #1a1a1a 0%, #333333 30%, #1a1a1a 60%, #0a0a0a 100%);
-      border-radius: 40px 40px 60px 60px;
-      position: relative;
-      box-shadow:
-        inset -20px 0 40px rgba(255, 255, 255, 0.1),
-        inset 20px 0 40px rgba(0, 0, 0, 0.8),
-        0 20px 60px rgba(200, 169, 104, 0.3);
-      animation: glow 3s ease-in-out infinite;
-    }
-
-    .bottle-cap {
-      position: absolute;
-      top: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 50px;
-      background: linear-gradient(135deg, #E0B87A, #C8A968, #B39550);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(200, 169, 104, 0.4);
-    }
-
-    .magnetic-ring {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 130px;
-      height: 130px;
-      border: 3px solid #C8A968;
-      border-radius: 50%;
-      box-shadow:
-        0 0 20px rgba(200, 169, 104, 0.5),
-        inset 0 0 20px rgba(200, 169, 104, 0.2);
-      animation: spin 8s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: translateX(-50%) rotateZ(0deg); }
-      100% { transform: translateX(-50%) rotateZ(360deg); }
-    }
-
-    .bottle-shine {
-      position: absolute;
-      top: 20px;
-      left: 30px;
-      width: 60px;
-      height: 200px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      border-radius: 50%;
-      filter: blur(20px);
-      animation: shine 3s ease-in-out infinite;
-    }
-
-    @keyframes shine {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-
-    /* FEATURES STRIP */
+    /* ===== FEATURES SECTION ===== */
     .features {
-      background: #FFFFFF;
-      padding: 80px 40px;
+      background: linear-gradient(135deg, #FAFAF8 0%, #FFFFFF 100%);
+      padding: 100px 60px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      max-width: 1400px;
+      gap: 50px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -333,9 +392,10 @@
     .feature:nth-child(4) { animation-delay: 0.4s; }
 
     .feature-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-      animation: float 4s ease-in-out infinite;
+      font-size: 56px;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+      display: inline-block;
     }
 
     .feature h3 {
@@ -343,38 +403,52 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       color: #050505;
     }
 
     .feature p {
       font-size: 14px;
       color: rgba(5, 5, 5, 0.6);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    /* SECTION MAGNÉTIQUE */
+    /* ===== SECTION MAGNÉTIQUE ===== */
     .magnetic-section {
-      background: linear-gradient(135deg, #061326 0%, #0a1f3a 100%);
-      padding: 120px 40px;
+      background: linear-gradient(135deg, #0f1729 0%, #1a2850 50%, #0f1729 100%);
+      padding: 120px 60px;
       color: white;
       position: relative;
       overflow: hidden;
     }
 
+    .magnetic-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200, 169, 104, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 20s ease-in-out infinite;
+    }
+
     .magnetic-content {
-      max-width: 1400px;
+      max-width: 1600px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
+      gap: 100px;
       align-items: center;
+      position: relative;
+      z-index: 2;
     }
 
     .magnetic-text h2 {
-      font-size: 60px;
-      line-height: 1.2;
-      margin-bottom: 40px;
+      font-size: 56px;
+      line-height: 1.3;
+      margin-bottom: 50px;
       animation: fadeInUp 0.8s ease;
     }
 
@@ -382,13 +456,13 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
 
     .magnetic-list li {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
       font-size: 18px;
       animation: fadeInUp 0.8s ease backwards;
     }
@@ -398,12 +472,13 @@
     .magnetic-list li:nth-child(3) { animation-delay: 0.4s; }
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       background: #C8A968;
       border-radius: 50%;
-      box-shadow: 0 0 20px rgba(200, 169, 104, 0.6);
+      box-shadow: 0 0 25px rgba(200, 169, 104, 0.8);
       animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     .magnetic-image {
@@ -411,32 +486,51 @@
       align-items: center;
       justify-content: center;
       perspective: 1000px;
+      animation: slideInRight 1s ease 0.5s both;
     }
 
     .magnetic-bottle {
-      width: 280px;
-      height: 450px;
-      background: linear-gradient(135deg, #1a1a1a 0%, #333333 30%, #1a1a1a 60%, #0a0a0a 100%);
-      border-radius: 35px 35px 50px 50px;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset -15px 0 30px rgba(255, 255, 255, 0.1);
-      animation: float 5s ease-in-out infinite;
+      width: 300px;
+      height: 480px;
+      background: linear-gradient(135deg, #0d0d0d 0%, #2a2a2a 20%, #1a1a1a 50%, #0a0a0a 80%, #050505 100%);
+      border-radius: 60px 60px 80px 80px;
+      box-shadow:
+        0 60px 120px rgba(0, 0, 0, 0.8),
+        0 0 60px rgba(200, 169, 104, 0.4),
+        inset -30px -30px 60px rgba(0, 0, 0, 0.9),
+        inset 30px 30px 60px rgba(255, 255, 255, 0.15);
+      animation: floatRotate 5s ease-in-out infinite;
       position: relative;
     }
 
-    /* SECTION PRODUIT */
+    .magnetic-bottle::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      width: 70px;
+      height: 200px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      border-radius: 50%;
+      filter: blur(20px);
+      animation: shine 3s ease-in-out infinite;
+    }
+
+    /* ===== SECTION PRODUIT ===== */
     .product-section {
       background: #FFFFFF;
-      padding: 120px 40px;
-      max-width: 1400px;
+      padding: 120px 60px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
     .product-heading {
-      font-size: 52px;
+      font-size: 56px;
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
       color: #050505;
       animation: fadeInUp 0.8s ease;
+      line-height: 1.3;
     }
 
     .product-cards {
@@ -446,11 +540,11 @@
     }
 
     .product-card {
-      background: linear-gradient(135deg, #F7F7F5 0%, #FFFFFF 100%);
-      padding: 40px;
+      background: linear-gradient(135deg, #F8F6F4 0%, #FFFFFF 100%);
+      padding: 50px;
       border-radius: 20px;
-      border: 1px solid #EDEDED;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(200, 169, 104, 0.15);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       animation: fadeInUp 0.8s ease backwards;
       position: relative;
       overflow: hidden;
@@ -467,8 +561,8 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(200, 169, 104, 0.1), transparent);
-      transition: left 0.6s;
+      background: linear-gradient(90deg, transparent, rgba(200, 169, 104, 0.15), transparent);
+      transition: left 0.7s ease;
     }
 
     .product-card:hover::before {
@@ -476,9 +570,20 @@
     }
 
     .product-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 30px 60px rgba(200, 169, 104, 0.15);
+      transform: translateY(-20px);
+      box-shadow: 0 40px 80px rgba(200, 169, 104, 0.2);
       border-color: #C8A968;
+      background: linear-gradient(135deg, #FFFBF5 0%, #FFFFFF 100%);
+    }
+
+    .product-number {
+      font-size: 48px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #C8A968, #E8C878);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
     }
 
     .product-card h3 {
@@ -490,81 +595,267 @@
 
     .product-card p {
       font-size: 14px;
-      color: rgba(5, 5, 5, 0.6);
-      line-height: 1.7;
+      color: rgba(5, 5, 5, 0.65);
+      line-height: 1.8;
     }
 
-    .product-number {
-      font-size: 40px;
-      font-weight: 700;
-      color: #C8A968;
-      margin-bottom: 15px;
+    /* ===== TESTIMONIALS ===== */
+    .testimonials {
+      background: linear-gradient(135deg, #0f1729 0%, #1a2850 100%);
+      padding: 120px 60px;
+      color: white;
     }
 
-    /* CTA FINAL */
-    .final-cta {
-      background: linear-gradient(135deg, #C8A968 0%, #E8C878 100%);
-      padding: 80px 40px;
+    .testimonials-heading {
+      font-size: 48px;
       text-align: center;
-      color: #050505;
+      margin-bottom: 80px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid rgba(200, 169, 104, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease backwards;
+      transition: all 0.4s ease;
+    }
+
+    .testimonial:nth-child(1) { animation-delay: 0.1s; }
+    .testimonial:nth-child(2) { animation-delay: 0.2s; }
+    .testimonial:nth-child(3) { animation-delay: 0.3s; }
+
+    .testimonial:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #C8A968;
+    }
+
+    .stars {
+      color: #C8A968;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .testimonial p {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: #C8A968;
+    }
+
+    /* ===== FINAL CTA ===== */
+    .final-cta {
+      background: linear-gradient(135deg, #1a0f2e 0%, #2d1b42 50%, #1a0f2e 100%);
+      padding: 100px 60px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 100%, rgba(200, 169, 104, 0.1) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .final-cta h2 {
       font-size: 52px;
       margin-bottom: 20px;
       animation: fadeInUp 0.8s ease;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
     }
 
     .final-cta p {
       font-size: 18px;
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 40px;
       animation: fadeInUp 0.8s ease 0.1s both;
+      position: relative;
+      z-index: 1;
     }
 
     .final-cta .btn {
       animation: fadeInUp 0.8s ease 0.2s both;
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     .footer {
       background: #050505;
-      color: white;
-      padding: 40px;
+      color: rgba(255, 255, 255, 0.6);
       text-align: center;
+      padding: 40px;
       font-size: 14px;
+      border-top: 1px solid rgba(200, 169, 104, 0.1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding: 0 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 52px;
+      }
+
+      .bottle-container {
+        height: 400px;
+      }
+
+      .bottle-wrapper {
+        width: 240px;
+        height: 390px;
+      }
+
+      .nav-links {
+        gap: 30px;
+      }
+
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 80px 40px;
+        gap: 40px;
+      }
+
+      .magnetic-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .product-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      .navbar { flex-direction: column; gap: 20px; }
-      .nav-links { display: none; }
-      .hero-content { grid-template-columns: 1fr; gap: 40px; }
-      .hero-text h1 { font-size: 42px; }
-      .features { grid-template-columns: 1fr; }
-      .magnetic-content { grid-template-columns: 1fr; }
-      .product-cards { grid-template-columns: 1fr; }
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .nav-links {
+        gap: 20px;
+        font-size: 12px;
+      }
+
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 100px 20px 40px;
+      }
+
+      .hero-content {
+        padding: 0;
+        gap: 40px;
+      }
+
+      .hero-text h1 {
+        font-size: 36px;
+      }
+
+      .hero-text p {
+        font-size: 16px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .bottle-container {
+        height: 300px;
+      }
+
+      .bottle-wrapper {
+        width: 180px;
+        height: 290px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        padding: 60px 20px;
+      }
+
+      .magnetic-section {
+        padding: 80px 20px;
+      }
+
+      .magnetic-text h2 {
+        font-size: 36px;
+      }
+
+      .product-section {
+        padding: 80px 20px;
+      }
+
+      .product-heading {
+        font-size: 36px;
+      }
+
+      .testimonials {
+        padding: 80px 20px;
+      }
+
+      .final-cta {
+        padding: 80px 20px;
+      }
+
+      .final-cta h2 {
+        font-size: 36px;
+      }
     }
   </style>
 </head>
 <body>
-
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">PtiDétour</div>
     <ul class="nav-links">
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#produit">Produit</a></li>
-      <li><a href="#caracteristiques">Caractéristiques</a></li>
-      <li><a href="#avis">Avis</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <a onclick="document.getElementById('accueil').scrollIntoView({behavior: 'smooth'})">Accueil</a>
+      <a onclick="document.getElementById('produit').scrollIntoView({behavior: 'smooth'})">Produit</a>
+      <a onclick="document.getElementById('magnetique').scrollIntoView({behavior: 'smooth'})">Magnétique</a>
+      <a onclick="document.getElementById('temoignages').scrollIntoView({behavior: 'smooth'})">Avis</a>
     </ul>
-    <div class="nav-icons">
-      <span>🔍</span>
-      <span>👤</span>
-      <span>🛍️</span>
-    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero" id="accueil">
     <div class="hero-content">
       <div class="hero-text">
@@ -572,8 +863,8 @@
         <h1>Votre boisson.<br>Votre téléphone.<br><span class="highlight">Toujours à portée.</span></h1>
         <p>Une gourde premium avec support magnétique intégré. Gardez votre téléphone à portée de main tout en restant hydraté.</p>
         <div class="cta-buttons">
-          <button class="btn btn-primary">Découvrir la Gourde</button>
-          <button class="btn btn-secondary">Voir les Caractéristiques</button>
+          <button class="btn btn-primary" onclick="document.getElementById('produit').scrollIntoView({behavior: 'smooth'})">Découvrir la Gourde</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('magnetique').scrollIntoView({behavior: 'smooth'})">Voir les Caractéristiques</button>
         </div>
       </div>
       <div class="bottle-container">
@@ -581,14 +872,13 @@
           <div class="bottle">
             <div class="bottle-cap"></div>
             <div class="magnetic-ring"></div>
-            <div class="bottle-shine"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- FEATURES STRIP -->
   <section class="features">
     <div class="feature">
       <div class="feature-icon">⚡</div>
@@ -598,7 +888,7 @@
     <div class="feature">
       <div class="feature-icon">🌡️</div>
       <h3>Isolation Thermique</h3>
-      <p>Gardez vos boissons fraîches ou chaudes pendant des heures.</p>
+      <p>Gardez vos boissons froides ou chaudes pendant des heures.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">💧</div>
@@ -612,8 +902,8 @@
     </div>
   </section>
 
-  <!-- SECTION MAGNÉTIQUE -->
-  <section class="magnetic-section">
+  <!-- MAGNETIC SECTION -->
+  <section class="magnetic-section" id="magnetique">
     <div class="magnetic-content">
       <div>
         <h2>Votre Téléphone.<br>Toujours à Portée.</h2>
@@ -629,7 +919,7 @@
     </div>
   </section>
 
-  <!-- PRODUIT -->
+  <!-- PRODUCT SECTION -->
   <section class="product-section" id="produit">
     <h2 class="product-heading">Pourquoi Choisir PtiDétour?</h2>
     <div class="product-cards">
@@ -651,7 +941,29 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="temoignages">
+    <h2 class="testimonials-heading">Ce Que Nos Clients Disent</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Absolument révolutionnaire ! Je garde mon téléphone toujours à portée sans avoir besoin de sacoche."</p>
+        <div class="testimonial-author">- Marie, Aventurière</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"La qualité est incroyable. L'isolation thermique fonctionne parfaitement après 8 heures d'usage."</p>
+        <div class="testimonial-author">- Pierre, Sportif</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Mon nouveau compagnon de voyage indispensable. Esthétique, fonctionnel et ultra premium."</p>
+        <div class="testimonial-author">- Sophie, Exploratrice</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
   <section class="final-cta">
     <h2>Faites de Chaque Détour une Nouvelle Aventure</h2>
     <p>Hydratez-vous. Emportez votre téléphone. Profitez du moment.</p>
@@ -662,6 +974,5 @@
   <footer class="footer">
     <p>© 2026 PtiDétour. Tous droits réservés. | Votre compagnon pour chaque détour.</p>
   </footer>
-
 </body>
 </html>
