@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* ===== ANIMATIONS ===== */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(60px); }
       to { opacity: 1; transform: translateY(0); }
@@ -43,8 +42,8 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     @keyframes gradientShift {
@@ -53,7 +52,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* ===== NAVBAR ===== */
+    /* NAVBAR */
     .navbar {
       position: fixed;
       top: 0;
@@ -87,43 +86,24 @@
       background: none;
       border: none;
       color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
       font-size: 14px;
       font-weight: 500;
       transition: all 0.3s ease;
-      position: relative;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
     }
 
     .nav-links button:hover {
       color: #C8A968;
-      transform: translateY(-2px);
     }
 
-    .nav-links button::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #C8A968;
-      transition: width 0.4s ease;
-    }
-
-    .nav-links button:hover::after {
-      width: 100%;
-    }
-
-    /* ===== HERO ===== */
+    /* HERO */
     .hero {
       height: 100vh;
       background: linear-gradient(135deg, #0a0e27 0%, #1a0f2e 25%, #2d1b42 50%, #1a0f2e 75%, #0a0e27 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       position: relative;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -178,10 +158,6 @@
 
     .hero-text h1 .highlight {
       color: #C8A968;
-      background: linear-gradient(135deg, #C8A968, #E8C878);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .hero-text p {
@@ -208,9 +184,7 @@
       border: none;
       cursor: pointer;
       border-radius: 8px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
+      transition: all 0.4s ease;
       font-family: 'Inter', sans-serif;
     }
 
@@ -229,16 +203,14 @@
       background: transparent;
       color: white;
       border: 2px solid white;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary:hover {
       background: white;
       color: #050505;
-      transform: scale(1.05);
     }
 
-    /* ===== 3D CANVAS ===== */
+    /* 3D CANVAS */
     .bottle-container-3d {
       position: relative;
       width: 100%;
@@ -264,7 +236,7 @@
       pointer-events: none;
     }
 
-    /* ===== FEATURES ===== */
+    /* FEATURES */
     .features {
       background: linear-gradient(135deg, #FAFAF8 0%, #FFFFFF 100%);
       padding: 100px 60px;
@@ -280,16 +252,10 @@
       animation: fadeInUp 0.8s ease backwards;
     }
 
-    .feature:nth-child(1) { animation-delay: 0.1s; }
-    .feature:nth-child(2) { animation-delay: 0.2s; }
-    .feature:nth-child(3) { animation-delay: 0.3s; }
-    .feature:nth-child(4) { animation-delay: 0.4s; }
-
     .feature-icon {
       font-size: 56px;
       margin-bottom: 20px;
       animation: float 3s ease-in-out infinite;
-      display: inline-block;
     }
 
     .feature h3 {
@@ -307,35 +273,17 @@
       line-height: 1.7;
     }
 
-    /* ===== MAGNETIC SECTION ===== */
+    /* SECTIONS */
     .magnetic-section {
-      background: linear-gradient(135deg, #0f1729 0%, #1a2850 50%, #0f1729 100%);
+      background: linear-gradient(135deg, #0f1729 0%, #1a2850 100%);
       padding: 120px 60px;
       color: white;
       position: relative;
-      overflow: hidden;
-    }
-
-    .magnetic-section::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(200, 169, 104, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: float 20s ease-in-out infinite;
     }
 
     .magnetic-content {
       max-width: 1600px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 100px;
-      position: relative;
-      z-index: 2;
     }
 
     .magnetic-text h2 {
@@ -360,10 +308,6 @@
       animation: fadeInUp 0.8s ease backwards;
     }
 
-    .magnetic-list li:nth-child(1) { animation-delay: 0.2s; }
-    .magnetic-list li:nth-child(2) { animation-delay: 0.3s; }
-    .magnetic-list li:nth-child(3) { animation-delay: 0.4s; }
-
     .dot {
       width: 14px;
       height: 14px;
@@ -374,7 +318,7 @@
       flex-shrink: 0;
     }
 
-    /* ===== PRODUCT SECTION ===== */
+    /* PRODUCT */
     .product-section {
       background: #FFFFFF;
       padding: 120px 60px;
@@ -388,7 +332,6 @@
       margin-bottom: 60px;
       color: #050505;
       animation: fadeInUp 0.8s ease;
-      line-height: 1.3;
     }
 
     .product-cards {
@@ -402,29 +345,8 @@
       padding: 50px;
       border-radius: 20px;
       border: 1px solid rgba(200, 169, 104, 0.15);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: all 0.5s ease;
       animation: fadeInUp 0.8s ease backwards;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-card:nth-child(1) { animation-delay: 0.1s; }
-    .product-card:nth-child(2) { animation-delay: 0.2s; }
-    .product-card:nth-child(3) { animation-delay: 0.3s; }
-
-    .product-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(200, 169, 104, 0.15), transparent);
-      transition: left 0.7s ease;
-    }
-
-    .product-card:hover::before {
-      left: 100%;
     }
 
     .product-card:hover {
@@ -436,10 +358,7 @@
     .product-number {
       font-size: 48px;
       font-weight: 700;
-      background: linear-gradient(135deg, #C8A968, #E8C878);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #C8A968;
       margin-bottom: 20px;
     }
 
@@ -456,7 +375,7 @@
       line-height: 1.8;
     }
 
-    /* ===== TESTIMONIALS ===== */
+    /* TESTIMONIALS */
     .testimonials {
       background: linear-gradient(135deg, #0f1729 0%, #1a2850 100%);
       padding: 120px 60px;
@@ -497,7 +416,6 @@
     .stars {
       color: #C8A968;
       margin-bottom: 20px;
-      font-size: 14px;
     }
 
     .testimonial p {
@@ -512,22 +430,18 @@
       color: #C8A968;
     }
 
-    /* ===== FINAL CTA ===== */
+    /* FINAL CTA */
     .final-cta {
       background: linear-gradient(135deg, #1a0f2e 0%, #2d1b42 50%, #1a0f2e 100%);
       padding: 100px 60px;
       text-align: center;
       color: white;
-      position: relative;
-      overflow: hidden;
     }
 
     .final-cta h2 {
       font-size: 52px;
       margin-bottom: 20px;
       animation: fadeInUp 0.8s ease;
-      position: relative;
-      z-index: 1;
       line-height: 1.3;
     }
 
@@ -536,11 +450,9 @@
       color: rgba(255, 255, 255, 0.8);
       margin-bottom: 40px;
       animation: fadeInUp 0.8s ease 0.1s both;
-      position: relative;
-      z-index: 1;
     }
 
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     .footer {
       background: #050505;
       color: rgba(255, 255, 255, 0.6);
@@ -550,115 +462,28 @@
       border-top: 1px solid rgba(200, 169, 104, 0.1);
     }
 
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
       .hero-content {
         grid-template-columns: 1fr;
         gap: 60px;
-        padding: 0 40px;
       }
-
-      .hero-text h1 {
-        font-size: 52px;
-      }
-
-      .nav-links {
-        gap: 30px;
-      }
-
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 80px 40px;
-      }
-
-      .product-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero-text h1 { font-size: 52px; }
+      .features { grid-template-columns: repeat(2, 1fr); }
+      .product-cards { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 15px 20px;
-      }
-
-      .logo {
-        font-size: 20px;
-      }
-
-      .nav-links {
-        gap: 20px;
-        font-size: 12px;
-      }
-
-      .hero {
-        height: auto;
-        min-height: 100vh;
-        padding: 100px 20px 40px;
-      }
-
-      .hero-content {
-        padding: 0;
-        gap: 40px;
-      }
-
-      .hero-text h1 {
-        font-size: 36px;
-      }
-
-      .hero-text p {
-        font-size: 16px;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        padding: 60px 20px;
-      }
-
-      .magnetic-section {
-        padding: 80px 20px;
-      }
-
-      .magnetic-text h2 {
-        font-size: 36px;
-      }
-
-      .product-section {
-        padding: 80px 20px;
-      }
-
-      .product-heading {
-        font-size: 36px;
-      }
-
-      .testimonials {
-        padding: 80px 20px;
-      }
-
-      .final-cta {
-        padding: 80px 20px;
-      }
-
-      .final-cta h2 {
-        font-size: 36px;
-      }
+      .navbar { padding: 15px 20px; }
+      .hero { padding: 100px 20px 40px; }
+      .hero-content { padding: 0; gap: 40px; }
+      .hero-text h1 { font-size: 36px; }
+      .cta-buttons { flex-direction: column; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo" onclick="document.getElementById('accueil').scrollIntoView({behavior: 'smooth'})">PtiDétour</div>
     <ul class="nav-links">
@@ -669,7 +494,6 @@
     </ul>
   </nav>
 
-  <!-- HERO SECTION -->
   <section class="hero" id="accueil">
     <div class="hero-content">
       <div class="hero-text">
@@ -688,7 +512,6 @@
     </div>
   </section>
 
-  <!-- FEATURES STRIP -->
   <section class="features">
     <div class="feature">
       <div class="feature-icon">⚡</div>
@@ -698,7 +521,7 @@
     <div class="feature">
       <div class="feature-icon">🌡️</div>
       <h3>Isolation Thermique</h3>
-      <p>Gardez vos boissons froides ou chaudes pendant des heures.</p>
+      <p>Gardez vos boissons froides ou chaudes.</p>
     </div>
     <div class="feature">
       <div class="feature-icon">💧</div>
@@ -708,404 +531,240 @@
     <div class="feature">
       <div class="feature-icon">🛡️</div>
       <h3>Acier Inoxydable</h3>
-      <p>Un design durable pour vous accompagner partout.</p>
+      <p>Design durable et premium.</p>
     </div>
   </section>
 
-  <!-- MAGNETIC SECTION -->
   <section class="magnetic-section" id="magnetique">
     <div class="magnetic-content">
-      <div>
-        <h2>Votre Téléphone.<br>Toujours à Portée.</h2>
-        <ul class="magnetic-list">
-          <li><span class="dot"></span> Fixation Magnétique Puissante</li>
-          <li><span class="dot"></span> Accès Rapide à Votre Téléphone</li>
-          <li><span class="dot"></span> Utilisation Mains Libres</li>
-        </ul>
-      </div>
+      <h2>Votre Téléphone.<br>Toujours à Portée.</h2>
+      <ul class="magnetic-list">
+        <li><span class="dot"></span> Fixation Magnétique Puissante</li>
+        <li><span class="dot"></span> Accès Rapide à Votre Téléphone</li>
+        <li><span class="dot"></span> Utilisation Mains Libres</li>
+      </ul>
     </div>
   </section>
 
-  <!-- PRODUCT SECTION -->
   <section class="product-section" id="produit">
     <h2 class="product-heading">Pourquoi Choisir PtiDétour?</h2>
     <div class="product-cards">
       <div class="product-card">
         <div class="product-number">01</div>
         <h3>Votre Téléphone à Portée</h3>
-        <p>Le support magnétique intégré permet de garder votre téléphone facilement accessible, peu importe où vous êtes.</p>
+        <p>Le support magnétique intégré permet de garder votre téléphone accessible.</p>
       </div>
       <div class="product-card">
         <div class="product-number">02</div>
         <h3>Gardez la Bonne Température</h3>
-        <p>La double paroi isolante aide à conserver vos boissons froides ou chaudes pendant des heures.</p>
+        <p>Double paroi isolante pour boissons froides ou chaudes.</p>
       </div>
       <div class="product-card">
         <div class="product-number">03</div>
         <h3>Emportez-la Partout</h3>
-        <p>Son anneau intégré permet de l'accrocher facilement à votre sac lors de vos déplacements.</p>
+        <p>Anneau intégré pour l'accrocher facilement à votre sac.</p>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
   <section class="testimonials" id="temoignages">
     <h2 class="testimonials-heading">Ce Que Nos Clients Disent</h2>
     <div class="testimonials-grid">
       <div class="testimonial">
         <div class="stars">★★★★★</div>
-        <p>"Absolument révolutionnaire ! Je garde mon téléphone toujours à portée sans avoir besoin de sacoche."</p>
+        <p>"Absolument révolutionnaire ! Je garde mon téléphone toujours à portée."</p>
         <div class="testimonial-author">- Marie, Aventurière</div>
       </div>
       <div class="testimonial">
         <div class="stars">★★★★★</div>
-        <p>"La qualité est incroyable. L'isolation thermique fonctionne parfaitement après 8 heures d'usage."</p>
+        <p>"La qualité est incroyable. L'isolation thermique fonctionne parfaitement."</p>
         <div class="testimonial-author">- Pierre, Sportif</div>
       </div>
       <div class="testimonial">
         <div class="stars">★★★★★</div>
-        <p>"Mon nouveau compagnon de voyage indispensable. Esthétique, fonctionnel et ultra premium."</p>
+        <p>"Mon nouveau compagnon de voyage indispensable. Esthétique et fonctionnel."</p>
         <div class="testimonial-author">- Sophie, Exploratrice</div>
       </div>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
   <section class="final-cta">
     <h2>Faites de Chaque Détour une Nouvelle Aventure</h2>
     <p>Hydratez-vous. Emportez votre téléphone. Profitez du moment.</p>
     <button class="btn btn-primary">Acheter Maintenant</button>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
-    <p>© 2026 PtiDétour. Tous droits réservés. | Votre compagnon pour chaque détour.</p>
+    <p>© 2026 PtiDétour. Tous droits réservés.</p>
   </footer>
 
   <script>
-    // ===== THREE.JS ULTRA REALISTIC 4K BOTTLE =====
-    let scene, camera, renderer, bottle, mouseX = 0, mouseY = 0;
-    let isDragging = false;
+    let scene, camera, renderer, bottle;
+    let mouseX = 0, mouseY = 0, isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
 
     function init3D() {
-      const canvas = document.getElementById('canvas3d');
-      const width = canvas.parentElement.clientWidth;
-      const height = canvas.parentElement.clientHeight;
+      try {
+        const canvas = document.getElementById('canvas3d');
+        if (!canvas) {
+          console.error('Canvas not found');
+          return;
+        }
 
-      // Scene with high precision
-      scene = new THREE.Scene();
-      scene.background = null;
-      scene.fog = new THREE.Fog(0x000000, 100, 1000);
+        const width = canvas.parentElement.clientWidth;
+        const height = canvas.parentElement.clientHeight;
 
-      // Ultra HD Camera
-      camera = new THREE.PerspectiveCamera(65, width / height, 0.01, 1000);
-      camera.position.set(0, 0.2, 3.5);
+        // Scene
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        scene.fog = new THREE.Fog(0x000000, 10, 100);
 
-      // High precision renderer
-      renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        antialias: true,
-        alpha: true,
-        precision: 'highp',
-        powerPreference: 'high-performance'
-      });
-      renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // 4K support
-      renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFShadowShadowMap;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.2;
+        // Camera
+        camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+        camera.position.z = 3;
 
-      // Professional three-point lighting
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-      scene.add(ambientLight);
+        // Renderer
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true,
+          alpha: false,
+          precision: 'highp'
+        });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.0;
 
-      // Key light - strong and directional
-      const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
-      keyLight.position.set(6, 10, 6);
-      keyLight.castShadow = true;
-      keyLight.shadow.mapSize.width = 4096;
-      keyLight.shadow.mapSize.height = 4096;
-      keyLight.shadow.camera.far = 100;
-      keyLight.shadow.camera.left = -12;
-      keyLight.shadow.camera.right = 12;
-      keyLight.shadow.camera.top = 12;
-      keyLight.shadow.camera.bottom = -12;
-      keyLight.shadow.bias = -0.001;
-      scene.add(keyLight);
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
 
-      // Fill light - gold rim
-      const fillLight = new THREE.DirectionalLight(0xD4AF37, 1.0);
-      fillLight.position.set(-7, 4, 4);
-      scene.add(fillLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+        directionalLight.position.set(5, 10, 7);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 2048;
+        directionalLight.shadow.mapSize.height = 2048;
+        scene.add(directionalLight);
 
-      // Back light - for separation
-      const backLight = new THREE.DirectionalLight(0xffffff, 0.6);
-      backLight.position.set(0, 5, -8);
-      scene.add(backLight);
+        const rimLight = new THREE.DirectionalLight(0xD4AF37, 0.8);
+        rimLight.position.set(-5, 3, 5);
+        scene.add(rimLight);
 
-      // Bottom ambient light
-      const bottomLight = new THREE.PointLight(0xffffff, 0.4);
-      bottomLight.position.set(0, -3, 1);
-      scene.add(bottomLight);
+        // Create bottle
+        createBottle();
 
-      // Create ultra realistic bottle
-      createRealisticBottle();
+        // Events
+        canvas.addEventListener('mousedown', onMouseDown);
+        canvas.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('mouseup', onMouseUp);
+        canvas.addEventListener('wheel', onMouseWheel, { passive: false });
+        canvas.addEventListener('touchstart', onTouchStart);
+        canvas.addEventListener('touchmove', onTouchMove);
+        canvas.addEventListener('touchend', onTouchEnd);
+        window.addEventListener('resize', onWindowResize);
 
-      // Mouse events
-      canvas.addEventListener('mousedown', onMouseDown);
-      canvas.addEventListener('mousemove', onMouseMove);
-      canvas.addEventListener('mouseup', onMouseUp);
-      canvas.addEventListener('wheel', onMouseWheel, { passive: false });
-      canvas.addEventListener('touchstart', onTouchStart);
-      canvas.addEventListener('touchmove', onTouchMove);
-      canvas.addEventListener('touchend', onTouchEnd);
-
-      window.addEventListener('resize', onWindowResize);
-
-      // Start animation
-      animate();
+        animate();
+      } catch (e) {
+        console.error('3D Error:', e);
+      }
     }
 
-    function createRealisticBottle() {
-      const bottleGroup = new THREE.Group();
+    function createBottle() {
+      bottle = new THREE.Group();
 
-      // Create smooth bottle body using CylinderGeometry
-      const bodyGeometry = new THREE.LatheGeometry([
-        new THREE.Vector2(0, 0),
-        new THREE.Vector2(0.5, 0.05),
-        new THREE.Vector2(0.56, 0.25),
-        new THREE.Vector2(0.58, 0.5),
-        new THREE.Vector2(0.57, 0.8),
-        new THREE.Vector2(0.55, 1.1),
-        new THREE.Vector2(0.52, 1.4),
-        new THREE.Vector2(0.48, 1.65),
-        new THREE.Vector2(0.42, 1.9),
-        new THREE.Vector2(0.38, 1.98),
-      ], 128);
-
-      bodyGeometry.computeVertexNormals();
-      bodyGeometry.normalizeNormals();
-
-      // Ultra premium material
-      const bodyMaterial = new THREE.MeshPhysicalMaterial({
+      // Body - simple cylinder
+      const bodyGeom = new THREE.CylinderGeometry(0.5, 0.45, 1.8, 64, 32);
+      const bodyMat = new THREE.MeshStandardMaterial({
         color: 0xFF5555,
         metalness: 0.2,
         roughness: 0.3,
-        emissive: 0x440000,
-        emissiveIntensity: 0.1,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.15,
-        sheen: 0.5,
-        sheenColor: 0xFF6666,
+        emissive: 0x330000,
+        emissiveIntensity: 0.1
       });
-
-      const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+      const body = new THREE.Mesh(bodyGeom, bodyMat);
       body.castShadow = true;
       body.receiveShadow = true;
-      body.scale.set(1.3, 1.4, 1.3);
-      body.position.y = -0.05;
-      bottleGroup.add(body);
+      bottle.add(body);
 
-      // Smooth cap - threaded design
-      const capGeometry = new THREE.CylinderGeometry(0.36, 0.39, 0.45, 64, 16);
-      const capMaterial = new THREE.MeshPhysicalMaterial({
+      // Cap
+      const capGeom = new THREE.CylinderGeometry(0.35, 0.38, 0.4, 64);
+      const capMat = new THREE.MeshStandardMaterial({
         color: 0x1a1a1a,
-        metalness: 0.75,
-        roughness: 0.2,
-        emissive: 0x222222,
-        emissiveIntensity: 0.05,
-        clearcoat: 0.9,
-        clearcoatRoughness: 0.2,
+        metalness: 0.8,
+        roughness: 0.2
       });
-
-      const cap = new THREE.Mesh(capGeometry, capMaterial);
+      const cap = new THREE.Mesh(capGeom, capMat);
+      cap.position.y = 1.1;
       cap.castShadow = true;
       cap.receiveShadow = true;
-      cap.position.y = 2.35;
-      bottleGroup.add(cap);
+      bottle.add(cap);
 
       // Top knob
-      const knobGeometry = new THREE.SphereGeometry(0.32, 64, 32);
-      const knobMaterial = new THREE.MeshPhysicalMaterial({
+      const knobGeom = new THREE.SphereGeometry(0.3, 32, 32);
+      const knobMat = new THREE.MeshStandardMaterial({
         color: 0x0a0a0a,
-        metalness: 0.85,
-        roughness: 0.1,
-        clearcoat: 1.0,
+        metalness: 0.9,
+        roughness: 0.1
       });
-
-      const knob = new THREE.Mesh(knobGeometry, knobMaterial);
-      knob.scale.set(1, 0.5, 1);
-      knob.position.y = 2.75;
+      const knob = new THREE.Mesh(knobGeom, knobMat);
+      knob.scale.y = 0.5;
+      knob.position.y = 1.4;
       knob.castShadow = true;
-      knob.receiveShadow = true;
-      bottleGroup.add(knob);
+      bottle.add(knob);
 
-      // Magnetic ring - thicker and more visible
-      const ringGeometry = new THREE.TorusGeometry(0.56, 0.08, 64, 256);
-      const ringMaterial = new THREE.MeshPhysicalMaterial({
+      // Magnetic ring
+      const ringGeom = new THREE.TorusGeometry(0.52, 0.07, 64, 256);
+      const ringMat = new THREE.MeshStandardMaterial({
         color: 0xD4AF37,
         metalness: 0.95,
         roughness: 0.1,
         emissive: 0xB8860B,
-        emissiveIntensity: 0.5,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.08,
+        emissiveIntensity: 0.4
       });
-
-      const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.position.y = 2.2;
+      const ring = new THREE.Mesh(ringGeom, ringMat);
+      ring.position.y = 0.95;
       ring.rotation.x = Math.PI / 2.2;
       ring.scale.set(1, 0.6, 1);
       ring.castShadow = true;
-      ring.receiveShadow = true;
-      bottleGroup.add(ring);
+      bottle.add(ring);
 
-      // Phone on cap - realistic iPhone
-      createRealisticPhone(bottleGroup);
-
-      // Ground shadow - gradient effect
-      const shadowGeometry = new THREE.CircleGeometry(1.2, 128);
-      const shadowMaterial = new THREE.MeshBasicMaterial({
-        color: 0x000000,
-        transparent: true,
-        opacity: 0.25,
-      });
-
-      const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
-      shadow.rotation.x = -Math.PI / 2;
-      shadow.position.y = -0.75;
-      shadow.userData.isShadow = true;
-      bottleGroup.add(shadow);
-
-      bottleGroup.position.y = 0;
-      scene.add(bottleGroup);
-      bottle = bottleGroup;
-    }
-
-    function createRealisticPhone(parent) {
-      const phoneGroup = new THREE.Group();
-
-      // Phone body - better proportions
-      const phoneGeometry = new THREE.BoxGeometry(0.35, 0.62, 0.028);
-      const phoneMaterial = new THREE.MeshPhysicalMaterial({
+      // Phone
+      const phoneGeom = new THREE.BoxGeometry(0.3, 0.55, 0.02);
+      const phoneMat = new THREE.MeshStandardMaterial({
         color: 0x0a0a0a,
         metalness: 0.9,
-        roughness: 0.1,
-        emissive: 0x000000,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.15,
+        roughness: 0.1
       });
-
-      const phone = new THREE.Mesh(phoneGeometry, phoneMaterial);
+      const phone = new THREE.Mesh(phoneGeom, phoneMat);
+      phone.position.set(0, 1.25, 0.15);
+      phone.rotation.x = -0.3;
       phone.castShadow = true;
-      phone.receiveShadow = true;
-      phoneGroup.add(phone);
+      bottle.add(phone);
 
-      // Screen
-      const screenGeometry = new THREE.BoxGeometry(0.33, 0.60, 0.029);
-      const screenMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0x1a1a1a,
-        metalness: 0.2,
-        roughness: 0.8,
-        emissive: 0x2a2a2a,
-        emissiveIntensity: 0.3,
-      });
-
-      const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-      screen.position.z = 0.005;
-      screen.castShadow = true;
-      phoneGroup.add(screen);
-
-      // Notch (Dynamic Island)
-      const notchGeometry = new THREE.BoxGeometry(0.14, 0.045, 0.03);
-      const notchMaterial = new THREE.MeshPhysicalMaterial({
+      // Shadow
+      const shadowGeom = new THREE.CircleGeometry(1.0, 64);
+      const shadowMat = new THREE.MeshBasicMaterial({
         color: 0x000000,
-        metalness: 0.6,
+        transparent: true,
+        opacity: 0.25
       });
+      const shadow = new THREE.Mesh(shadowGeom, shadowMat);
+      shadow.rotation.x = -Math.PI / 2;
+      shadow.position.y = -1.0;
+      bottle.add(shadow);
 
-      const notch = new THREE.Mesh(notchGeometry, notchMaterial);
-      notch.position.set(0, 0.26, 0.016);
-      notch.castShadow = true;
-      phoneGroup.add(notch);
-
-      // Large camera system
-      const cameraPositions = [-0.095, -0.03, 0.035];
-      cameraPositions.forEach((x, i) => {
-        const cameraGeometry = new THREE.CylinderGeometry(0.042, 0.042, 0.015, 64);
-        const cameraMaterial = new THREE.MeshPhysicalMaterial({
-          color: 0x000000,
-          metalness: 0.98,
-          roughness: 0.02,
-          clearcoat: 1.0,
-        });
-
-        const cameraLens = new THREE.Mesh(cameraGeometry, cameraMaterial);
-        cameraLens.position.set(x, 0.18, 0.03);
-        cameraLens.rotation.x = Math.PI / 2;
-        cameraLens.castShadow = true;
-        phoneGroup.add(cameraLens);
-
-        // Lens glass with refraction effect
-        const lensGlassGeometry = new THREE.CylinderGeometry(0.038, 0.038, 0.003, 64);
-        const lensGlassMaterial = new THREE.MeshPhysicalMaterial({
-          color: 0x0a0a0a,
-          metalness: 0.85,
-          roughness: 0.05,
-          emissive: 0x1a1a1a,
-          emissiveIntensity: 0.2,
-          clearcoat: 1.0,
-        });
-
-        const lensGlass = new THREE.Mesh(lensGlassGeometry, lensGlassMaterial);
-        lensGlass.position.set(x, 0.18, 0.035);
-        lensGlass.rotation.x = Math.PI / 2;
-        phoneGroup.add(lensGlass);
-      });
-
-      // Flash LED
-      const flashGeometry = new THREE.CircleGeometry(0.018, 64);
-      const flashMaterial = new THREE.MeshPhysicalMaterial({
-        color: 0xdddddd,
-        metalness: 0.8,
-        emissive: 0xbbbbbb,
-        emissiveIntensity: 0.4,
-      });
-
-      const flash = new THREE.Mesh(flashGeometry, flashMaterial);
-      flash.position.set(0.14, 0.17, 0.032);
-      flash.rotation.y = Math.PI / 2;
-      phoneGroup.add(flash);
-
-      phoneGroup.position.set(0, 2.45, 0.20);
-      phoneGroup.rotation.x = -0.35;
-      parent.add(phoneGroup);
+      scene.add(bottle);
     }
 
     function animate() {
       requestAnimationFrame(animate);
 
       if (bottle) {
-        // Auto-rotate
         if (!isDragging) {
-          bottle.rotation.y += 0.0015;
+          bottle.rotation.y += 0.002;
         }
-
-        // Subtle floating
         bottle.position.y = 0.05 * Math.sin(Date.now() * 0.0008);
-
-        // Floating shadow
-        const shadows = bottle.children.filter(child => child.geometry?.type === 'CircleGeometry');
-        shadows.forEach(shadow => {
-          shadow.scale.y = 0.8 + Math.sin(Date.now() * 0.0008) * 0.1;
-        });
-
-        // Rotating rings
-        const rings = bottle.children.filter(child => child.geometry?.type === 'TorusGeometry');
-        rings.forEach((ring, i) => {
-          ring.rotation.z += (i === 0 ? 0.025 : -0.015);
-        });
       }
 
       renderer.render(scene, camera);
@@ -1120,10 +779,8 @@
       if (isDragging && bottle) {
         const deltaX = e.clientX - previousMousePosition.x;
         const deltaY = e.clientY - previousMousePosition.y;
-
-        bottle.rotation.y += deltaX * 0.008;
-        bottle.rotation.x += deltaY * 0.008;
-
+        bottle.rotation.y += deltaX * 0.01;
+        bottle.rotation.x += deltaY * 0.01;
         previousMousePosition = { x: e.clientX, y: e.clientY };
       }
     }
@@ -1134,11 +791,10 @@
 
     function onMouseWheel(e) {
       e.preventDefault();
-      const zoomSpeed = 0.08;
       if (e.deltaY > 0) {
-        camera.position.z += zoomSpeed;
+        camera.position.z += 0.1;
       } else {
-        camera.position.z = Math.max(1.5, camera.position.z - zoomSpeed);
+        camera.position.z = Math.max(1.5, camera.position.z - 0.1);
       }
     }
 
@@ -1154,10 +810,8 @@
       if (isDragging && bottle && e.touches.length === 1) {
         const deltaX = e.touches[0].clientX - previousMousePosition.x;
         const deltaY = e.touches[0].clientY - previousMousePosition.y;
-
-        bottle.rotation.y += deltaX * 0.008;
-        bottle.rotation.x += deltaY * 0.008;
-
+        bottle.rotation.y += deltaX * 0.01;
+        bottle.rotation.x += deltaY * 0.01;
         previousMousePosition = {
           x: e.touches[0].clientX,
           y: e.touches[0].clientY
@@ -1173,7 +827,6 @@
       const canvas = document.getElementById('canvas3d');
       const width = canvas.parentElement.clientWidth;
       const height = canvas.parentElement.clientHeight;
-
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
