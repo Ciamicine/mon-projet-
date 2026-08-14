@@ -817,28 +817,37 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.2;
 
-      // Professional lighting setup
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      // Professional three-point lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
       scene.add(ambientLight);
 
-      const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
-      keyLight.position.set(5, 8, 5);
+      // Key light - strong and directional
+      const keyLight = new THREE.DirectionalLight(0xffffff, 1.8);
+      keyLight.position.set(6, 10, 6);
       keyLight.castShadow = true;
       keyLight.shadow.mapSize.width = 4096;
       keyLight.shadow.mapSize.height = 4096;
       keyLight.shadow.camera.far = 100;
-      keyLight.shadow.camera.left = -10;
-      keyLight.shadow.camera.right = 10;
-      keyLight.shadow.camera.top = 10;
-      keyLight.shadow.camera.bottom = -10;
+      keyLight.shadow.camera.left = -12;
+      keyLight.shadow.camera.right = 12;
+      keyLight.shadow.camera.top = 12;
+      keyLight.shadow.camera.bottom = -12;
+      keyLight.shadow.bias = -0.001;
       scene.add(keyLight);
 
-      const rimLight = new THREE.DirectionalLight(0xC8A968, 0.8);
-      rimLight.position.set(-5, 3, 3);
-      scene.add(rimLight);
+      // Fill light - gold rim
+      const fillLight = new THREE.DirectionalLight(0xD4AF37, 1.0);
+      fillLight.position.set(-7, 4, 4);
+      scene.add(fillLight);
 
-      const bottomLight = new THREE.PointLight(0xffffff, 0.6);
-      bottomLight.position.set(0, -2, 1);
+      // Back light - for separation
+      const backLight = new THREE.DirectionalLight(0xffffff, 0.6);
+      backLight.position.set(0, 5, -8);
+      scene.add(backLight);
+
+      // Bottom ambient light
+      const bottomLight = new THREE.PointLight(0xffffff, 0.4);
+      bottomLight.position.set(0, -3, 1);
       scene.add(bottomLight);
 
       // Create ultra realistic bottle
@@ -862,118 +871,112 @@
     function createRealisticBottle() {
       const bottleGroup = new THREE.Group();
 
-      // Create bottle body with high polygon count
+      // Create smooth bottle body using CylinderGeometry
       const bodyGeometry = new THREE.LatheGeometry([
         new THREE.Vector2(0, 0),
-        new THREE.Vector2(0.5, 0.1),
-        new THREE.Vector2(0.55, 0.3),
-        new THREE.Vector2(0.58, 0.6),
-        new THREE.Vector2(0.55, 1.0),
+        new THREE.Vector2(0.5, 0.05),
+        new THREE.Vector2(0.56, 0.25),
+        new THREE.Vector2(0.58, 0.5),
+        new THREE.Vector2(0.57, 0.8),
+        new THREE.Vector2(0.55, 1.1),
         new THREE.Vector2(0.52, 1.4),
-        new THREE.Vector2(0.48, 1.7),
-        new THREE.Vector2(0.40, 1.95),
-        new THREE.Vector2(0.38, 2.0),
-      ], 64);
+        new THREE.Vector2(0.48, 1.65),
+        new THREE.Vector2(0.42, 1.9),
+        new THREE.Vector2(0.38, 1.98),
+      ], 128);
 
-      // High quality material with realistic properties
-      const bodyMaterial = new THREE.MeshStandardMaterial({
-        color: 0xFF4444,
-        metalness: 0.15,
-        roughness: 0.25,
-        emissive: 0x330000,
-        emissiveIntensity: 0.15,
-        side: THREE.DoubleSide,
-        clearcoat: 0.8,
-        clearcoatRoughness: 0.1,
+      bodyGeometry.computeVertexNormals();
+      bodyGeometry.normalizeNormals();
+
+      // Ultra premium material
+      const bodyMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xFF5555,
+        metalness: 0.2,
+        roughness: 0.3,
+        emissive: 0x440000,
+        emissiveIntensity: 0.1,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.15,
+        sheen: 0.5,
+        sheenColor: 0xFF6666,
       });
 
       const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
       body.castShadow = true;
       body.receiveShadow = true;
-      body.scale.set(1.25, 1.35, 1.25);
-      body.position.y = -0.1;
+      body.scale.set(1.3, 1.4, 1.3);
+      body.position.y = -0.05;
       bottleGroup.add(body);
 
-      // High quality cap
-      const capGeometry = new THREE.CylinderGeometry(0.38, 0.40, 0.4, 64, 16);
-      const capMaterial = new THREE.MeshStandardMaterial({
+      // Smooth cap - threaded design
+      const capGeometry = new THREE.CylinderGeometry(0.36, 0.39, 0.45, 64, 16);
+      const capMaterial = new THREE.MeshPhysicalMaterial({
         color: 0x1a1a1a,
-        metalness: 0.7,
+        metalness: 0.75,
         roughness: 0.2,
-        emissive: 0x333333,
-        emissiveIntensity: 0.1,
-        clearcoat: 1.0,
-        clearcoatRoughness: 0.15,
+        emissive: 0x222222,
+        emissiveIntensity: 0.05,
+        clearcoat: 0.9,
+        clearcoatRoughness: 0.2,
       });
 
       const cap = new THREE.Mesh(capGeometry, capMaterial);
-      cap.position.y = 2.4;
       cap.castShadow = true;
       cap.receiveShadow = true;
+      cap.position.y = 2.35;
       bottleGroup.add(cap);
 
-      // Top cap detail
-      const topCapGeometry = new THREE.CylinderGeometry(0.35, 0.38, 0.1, 64, 8);
-      const topCapMaterial = new THREE.MeshStandardMaterial({
+      // Top knob
+      const knobGeometry = new THREE.SphereGeometry(0.32, 64, 32);
+      const knobMaterial = new THREE.MeshPhysicalMaterial({
         color: 0x0a0a0a,
-        metalness: 0.8,
+        metalness: 0.85,
         roughness: 0.1,
+        clearcoat: 1.0,
       });
 
-      const topCap = new THREE.Mesh(topCapGeometry, topCapMaterial);
-      topCap.position.y = 2.7;
-      topCap.castShadow = true;
-      bottleGroup.add(topCap);
+      const knob = new THREE.Mesh(knobGeometry, knobMaterial);
+      knob.scale.set(1, 0.5, 1);
+      knob.position.y = 2.75;
+      knob.castShadow = true;
+      knob.receiveShadow = true;
+      bottleGroup.add(knob);
 
-      // Premium magnetic ring with glow
-      const ringGeometry = new THREE.TorusGeometry(0.58, 0.06, 32, 128);
-      const ringMaterial = new THREE.MeshStandardMaterial({
-        color: 0xC8A968,
-        metalness: 0.9,
-        roughness: 0.15,
-        emissive: 0x8B7734,
-        emissiveIntensity: 0.4,
+      // Magnetic ring - thicker and more visible
+      const ringGeometry = new THREE.TorusGeometry(0.56, 0.08, 64, 256);
+      const ringMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xD4AF37,
+        metalness: 0.95,
+        roughness: 0.1,
+        emissive: 0xB8860B,
+        emissiveIntensity: 0.5,
         clearcoat: 1.0,
-        clearcoatRoughness: 0.1,
+        clearcoatRoughness: 0.08,
       });
 
       const ring = new THREE.Mesh(ringGeometry, ringMaterial);
-      ring.position.y = 2.15;
-      ring.rotation.x = Math.PI / 2.5;
+      ring.position.y = 2.2;
+      ring.rotation.x = Math.PI / 2.2;
+      ring.scale.set(1, 0.6, 1);
       ring.castShadow = true;
       ring.receiveShadow = true;
       bottleGroup.add(ring);
 
-      // Inner glow ring
-      const ringInnerGeometry = new THREE.TorusGeometry(0.50, 0.035, 32, 128);
-      const ringInnerMaterial = new THREE.MeshStandardMaterial({
-        color: 0xE8C878,
-        metalness: 0.95,
-        roughness: 0.05,
-        emissive: 0xC8A968,
-        emissiveIntensity: 0.6,
-      });
-
-      const ringInner = new THREE.Mesh(ringInnerGeometry, ringInnerMaterial);
-      ringInner.position.y = 2.15;
-      ringInner.rotation.x = Math.PI / 2.5;
-      ringInner.castShadow = true;
-      bottleGroup.add(ringInner);
-
       // Phone on cap - realistic iPhone
       createRealisticPhone(bottleGroup);
 
-      // Ground shadow
-      const shadowGeometry = new THREE.CircleGeometry(1.0, 64);
+      // Ground shadow - gradient effect
+      const shadowGeometry = new THREE.CircleGeometry(1.2, 128);
       const shadowMaterial = new THREE.MeshBasicMaterial({
         color: 0x000000,
         transparent: true,
-        opacity: 0.3,
+        opacity: 0.25,
       });
 
       const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
       shadow.rotation.x = -Math.PI / 2;
-      shadow.position.y = -0.8;
+      shadow.position.y = -0.75;
+      shadow.userData.isShadow = true;
       bottleGroup.add(shadow);
 
       bottleGroup.position.y = 0;
@@ -984,14 +987,15 @@
     function createRealisticPhone(parent) {
       const phoneGroup = new THREE.Group();
 
-      // Phone body
-      const phoneGeometry = new THREE.BoxGeometry(0.32, 0.55, 0.025);
-      const phoneMaterial = new THREE.MeshStandardMaterial({
+      // Phone body - better proportions
+      const phoneGeometry = new THREE.BoxGeometry(0.35, 0.62, 0.028);
+      const phoneMaterial = new THREE.MeshPhysicalMaterial({
         color: 0x0a0a0a,
-        metalness: 0.85,
-        roughness: 0.15,
+        metalness: 0.9,
+        roughness: 0.1,
         emissive: 0x000000,
-        clearcoat: 0.9,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.15,
       });
 
       const phone = new THREE.Mesh(phoneGeometry, phoneMaterial);
@@ -1000,79 +1004,82 @@
       phoneGroup.add(phone);
 
       // Screen
-      const screenGeometry = new THREE.BoxGeometry(0.30, 0.52, 0.026);
-      const screenMaterial = new THREE.MeshStandardMaterial({
-        color: 0x222222,
-        metalness: 0.3,
-        roughness: 0.7,
-        emissive: 0x1a1a1a,
-        emissiveIntensity: 0.2,
+      const screenGeometry = new THREE.BoxGeometry(0.33, 0.60, 0.029);
+      const screenMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0x1a1a1a,
+        metalness: 0.2,
+        roughness: 0.8,
+        emissive: 0x2a2a2a,
+        emissiveIntensity: 0.3,
       });
 
       const screen = new THREE.Mesh(screenGeometry, screenMaterial);
-      screen.position.z = 0.01;
+      screen.position.z = 0.005;
       screen.castShadow = true;
       phoneGroup.add(screen);
 
-      // Notch
-      const notchGeometry = new THREE.BoxGeometry(0.12, 0.04, 0.027);
-      const notchMaterial = new THREE.MeshStandardMaterial({
+      // Notch (Dynamic Island)
+      const notchGeometry = new THREE.BoxGeometry(0.14, 0.045, 0.03);
+      const notchMaterial = new THREE.MeshPhysicalMaterial({
         color: 0x000000,
+        metalness: 0.6,
       });
 
       const notch = new THREE.Mesh(notchGeometry, notchMaterial);
-      notch.position.set(0, 0.23, 0.015);
+      notch.position.set(0, 0.26, 0.016);
       notch.castShadow = true;
       phoneGroup.add(notch);
 
-      // Cameras
-      const cameraPositions = [-0.08, 0, 0.08];
+      // Large camera system
+      const cameraPositions = [-0.095, -0.03, 0.035];
       cameraPositions.forEach((x, i) => {
-        const cameraGeometry = new THREE.CylinderGeometry(0.035, 0.035, 0.012, 32);
-        const cameraMaterial = new THREE.MeshStandardMaterial({
+        const cameraGeometry = new THREE.CylinderGeometry(0.042, 0.042, 0.015, 64);
+        const cameraMaterial = new THREE.MeshPhysicalMaterial({
           color: 0x000000,
-          metalness: 0.95,
-          roughness: 0.05,
+          metalness: 0.98,
+          roughness: 0.02,
+          clearcoat: 1.0,
         });
 
         const cameraLens = new THREE.Mesh(cameraGeometry, cameraMaterial);
-        cameraLens.position.set(x, 0.20, 0.025);
+        cameraLens.position.set(x, 0.18, 0.03);
         cameraLens.rotation.x = Math.PI / 2;
         cameraLens.castShadow = true;
         phoneGroup.add(cameraLens);
 
-        // Lens glass
-        const lensGlassGeometry = new THREE.CylinderGeometry(0.032, 0.032, 0.002, 32);
-        const lensGlassMaterial = new THREE.MeshStandardMaterial({
-          color: 0x1a1a1a,
-          metalness: 0.8,
-          roughness: 0.1,
-          emissive: 0x444444,
-          emissiveIntensity: 0.1,
+        // Lens glass with refraction effect
+        const lensGlassGeometry = new THREE.CylinderGeometry(0.038, 0.038, 0.003, 64);
+        const lensGlassMaterial = new THREE.MeshPhysicalMaterial({
+          color: 0x0a0a0a,
+          metalness: 0.85,
+          roughness: 0.05,
+          emissive: 0x1a1a1a,
+          emissiveIntensity: 0.2,
+          clearcoat: 1.0,
         });
 
         const lensGlass = new THREE.Mesh(lensGlassGeometry, lensGlassMaterial);
-        lensGlass.position.set(x, 0.205, 0.028);
+        lensGlass.position.set(x, 0.18, 0.035);
         lensGlass.rotation.x = Math.PI / 2;
         phoneGroup.add(lensGlass);
       });
 
-      // Flash
-      const flashGeometry = new THREE.CircleGeometry(0.015, 32);
-      const flashMaterial = new THREE.MeshStandardMaterial({
-        color: 0xcccccc,
-        metalness: 0.7,
-        emissive: 0xaaaaaa,
-        emissiveIntensity: 0.3,
+      // Flash LED
+      const flashGeometry = new THREE.CircleGeometry(0.018, 64);
+      const flashMaterial = new THREE.MeshPhysicalMaterial({
+        color: 0xdddddd,
+        metalness: 0.8,
+        emissive: 0xbbbbbb,
+        emissiveIntensity: 0.4,
       });
 
       const flash = new THREE.Mesh(flashGeometry, flashMaterial);
-      flash.position.set(0.12, 0.20, 0.03);
+      flash.position.set(0.14, 0.17, 0.032);
+      flash.rotation.y = Math.PI / 2;
       phoneGroup.add(flash);
 
-      phoneGroup.position.set(0, 2.42, 0.18);
+      phoneGroup.position.set(0, 2.45, 0.20);
       phoneGroup.rotation.x = -0.35;
-      phoneGroup.scale.set(1, 1, 1);
       parent.add(phoneGroup);
     }
 
