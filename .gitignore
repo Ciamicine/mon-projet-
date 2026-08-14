@@ -6,9 +6,9 @@ node_modules/
 # Testing
 /coverage
 
-# Next.js
-/.next/
-/out/
+# Vite
+/dist
+*.tsbuildinfo
 
 # Production
 /build
@@ -38,7 +38,3 @@ yarn-error.log*
 # OS
 .DS_Store
 Thumbs.db
-
-# Dependencies
-package-lock.json
-yarn.lock
