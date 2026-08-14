@@ -1,0 +1,223 @@
+<section class="featured-collection">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">
+        Nos <span class="gradient-text">Produits Premium</span>
+      </h2>
+      <p class="section-description">
+        Découvrez notre sélection de gourdes magnétiques haut de gamme.
+      </p>
+    </div>
+
+    <div class="products-grid">
+      {% for product in collection.products limit: 4 %}
+        <div class="product-card">
+          <div class="product-image">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title }}">
+            {% else %}
+              <div class="placeholder-image">📦</div>
+            {% endif %}
+          </div>
+          <div class="product-info">
+            <h3>{{ product.title }}</h3>
+            <p class="product-description">{{ product.description | strip_html | truncatewords: 15 }}</p>
+
+            <div class="product-rating">
+              <span class="stars">⭐⭐⭐⭐⭐</span>
+              <span class="price">{{ product.price | money }}</span>
+            </div>
+
+            <form action="/cart/add" method="post" class="product-form">
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <button type="submit" class="add-to-cart-btn">
+                🛒 Ajouter au panier
+              </button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if collection.products_count == 0 %}
+      <div class="no-products">
+        <p>Aucun produit disponible pour le moment. Revenez bientôt!</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .featured-collection {
+    padding: 80px 0;
+    background: #f8fafc;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #0ea5e9 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-description {
+    font-size: 1.125rem;
+    color: #64748b;
+    max-width: 672px;
+    margin: 0 auto;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(14, 165, 233, 0.2);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #dbeafe 0%, #fbf1f3 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .placeholder-image {
+    font-size: 4rem;
+    text-align: center;
+  }
+
+  .product-info {
+    padding: 24px;
+  }
+
+  .product-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1e293b;
+  }
+
+  .product-description {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .product-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .stars {
+    font-size: 0.875rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0ea5e9 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .product-form {
+    width: 100%;
+  }
+
+  .add-to-cart-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #0ea5e9, #ec4899);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .add-to-cart-btn:hover {
+    box-shadow: 0 10px 25px rgba(14, 165, 233, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .no-products {
+    text-align: center;
+    padding: 48px 0;
+    color: #64748b;
+  }
+
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 1.875rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
